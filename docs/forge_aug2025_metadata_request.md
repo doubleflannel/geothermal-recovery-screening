@@ -53,7 +53,7 @@ Allowed:
 
 Not allowed:
 
-- FORGE August 2025 permeability has been estimated;
+- a FORGE August 2025 permeability result exists;
 - DTS alone is sufficient for permeability;
 - pressure, flow, and DTS are source-confirmed aligned;
 - GDR 1764 supplies the missing August 26–30 forcing package;

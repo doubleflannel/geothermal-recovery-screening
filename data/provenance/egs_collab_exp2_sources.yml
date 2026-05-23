@@ -17,7 +17,7 @@ source_urls:
   kneafsey_2025_grc: https://publications.mygeoenergynow.org/grc/1034612.pdf
   kneafsey_2024_osti: https://www.osti.gov/biblio/2481285
 local_derivation_sources:
-  source_repo: geothermal-public-paper
+  source_workspace: private derivation workspace
   crop_csv: data/processed/egs_collab_exp2_amu34_hydraulic_dts_crop.csv
   model_summary_json: data/processed/egs_collab_exp2_amu34_model_equivalent_summary.json
   published_comparison_csv: data/processed/egs_collab_exp2_published_permeability_comparison.csv
