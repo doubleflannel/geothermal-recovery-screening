@@ -28,8 +28,8 @@ The focus is on reproducibility and claim discipline:
 ## Current Status
 
 One worked public-data proof example is included from an EGS Collab Exp2 case.
-That example shows the style of analysis and claim boundary,
-not to claim that the method is fully validated across many datasets.
+That example shows the style of analysis and claim boundary. It does not claim
+that the method is fully validated across many datasets.
 
 Utah FORGE August 2025 16B(78)-32 is currently a promising but incomplete
 candidate. The public DTS package has strong time/depth/temperature metadata,
@@ -75,14 +75,14 @@ useful for deciding whether the candidate is fit-ready or remains blocked.
 
 ## Packet Contents
 
-- `proof_example_egs_collab_exp2.md` — one sanitized proof example.
-- `forge_aug2025_request_rationale.md` — why the FORGE row-level forcing data
+- [`proof_example_egs_collab_exp2.md`](proof_example_egs_collab_exp2.md) — one sanitized proof example.
+- [`forge_aug2025_request_rationale.md`](forge_aug2025_request_rationale.md) — why the FORGE row-level forcing data
   matter.
-- `evidence_discipline.md` — how source-confirmed, assumption-labeled, and
+- [`evidence_discipline.md`](evidence_discipline.md) — how source-confirmed, assumption-labeled, and
   blocked claims are separated.
-- `sources_checked.md` — public sources used in this packet.
-- `contact_and_citation.md` — contact and reuse guidance.
-- `artifacts/` — small static artifacts only; no raw datasets.
+- [`sources_checked.md`](sources_checked.md) — public sources used in this packet.
+- [`contact_and_citation.md`](contact_and_citation.md) — contact and reuse guidance.
+- [`artifacts/`](artifacts/) — small static artifacts only; no raw datasets.
 
 ## Reuse Boundary
 
