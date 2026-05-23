@@ -1,6 +1,6 @@
 # Sources Checked
 
-This page lists the public sources used in the packet pages.
+This page lists the public sources used by this repository.
 
 ## EGS Collab Worked Example
 
