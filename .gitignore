@@ -2,7 +2,6 @@
 # This folder is intended to become a separate public GitHub repo.
 
 # Raw or large scientific data must never be copied into the public packet.
-data/
 data_external/
 external/
 raw/
@@ -43,3 +42,13 @@ __pycache__/
 .cache/
 node_modules/
 
+# Reproducibility packet inputs: allow only the small processed files used by
+# the public worked example.
+!data/
+!data/README.md
+!data/processed/
+!data/processed/egs_collab_exp2_amu34m_recovery.csv
+!data/processed/egs_collab_exp2_boundary_inputs.csv
+!data/processed/egs_collab_exp2_published_k_ranges.csv
+!data/provenance/
+!data/provenance/egs_collab_exp2_sources.yml

@@ -1,0 +1,14 @@
+case: egs_collab_exp2_amu34m
+fit:
+  start_timestamp_utc_assumed: "2022-04-12 15:32:12"
+  end_timestamp_utc_assumed: "2022-04-13 16:00:00"
+  target_tau_h: 4.19422278598
+  target_rmse_c: 0.0125336300737
+permeability:
+  formula: k_eq = mu * Q * L / (A * deltaP)
+  preferred_k_eq_m2: 1.59483364027e-15
+  low_k_eq_m2: 3.52080831118e-16
+  high_k_eq_m2: 4.40101038898e-15
+  flow_l_min: 0.399997
+  delta_pressure_mpa: 22.7218845587
+claim_boundary: bulk/model-equivalent scale check only

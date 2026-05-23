@@ -1,0 +1,31 @@
+case: egs_collab_exp2_amu34m_worked_example
+status: public-source-derived processed inputs
+claim_boundary: >
+  Reproduces one EGS Collab Exp2 AMU 34 m bulk/model-equivalent permeability
+  scale check. This is not measured rock permeability, exact-fracture
+  permeability, geometry-independent permeability, or FORGE permeability.
+processed_inputs:
+  recovery_csv: data/processed/egs_collab_exp2_amu34m_recovery.csv
+  boundary_csv: data/processed/egs_collab_exp2_boundary_inputs.csv
+  published_k_csv: data/processed/egs_collab_exp2_published_k_ranges.csv
+source_urls:
+  egs_collab_exp2_public_data: https://gdr.openei.org/submissions/1428
+  egs_collab_dts_event_window: https://gdr.openei.org/submissions/1476
+  egs_collab_trajectory_context: https://gdr.openei.org/submissions/1483
+  meng_frash_2022_osti: https://www.osti.gov/biblio/1846146
+  schwering_2023_geothermal_rising: https://pangea.stanford.edu/ERE/pdf/IGAstandard/SGW/2023/Schwering.pdf
+  kneafsey_2025_grc: https://publications.mygeoenergynow.org/grc/1034612.pdf
+  kneafsey_2024_osti: https://www.osti.gov/biblio/2481285
+local_derivation_sources:
+  source_repo: geothermal-public-paper
+  crop_csv: data/processed/egs_collab_exp2_amu34_hydraulic_dts_crop.csv
+  model_summary_json: data/processed/egs_collab_exp2_amu34_model_equivalent_summary.json
+  published_comparison_csv: data/processed/egs_collab_exp2_published_permeability_comparison.csv
+  run_notes:
+    - notes/task50_19_exp2_amu_model_equivalent_sensitivity.md
+    - notes/task50_13_exp2_published_permeability_comparison.md
+processing_notes:
+  time_basis: Assumed UTC from the public EGS Collab timeline and DTS report; original NetCDF decoded datetimes are naive.
+  depth_basis: AMU 34.0 m monitoring-borehole measured depth; same-testbed depth scale is about 1.25 km below surface.
+  geometry_basis: Source-constrained length uses GDR 1483 trajectory context; contact area remains assumption-labeled.
+  permeability_basis: k_eq = mu * Q * L / (A * deltaP), reported only as bulk/model-equivalent permeability in m2.
