@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this preliminary repository, cite it as research software."
+title: "Geothermal recovery screening"
+version: "0.1.0"
+date-released: "2026-05-23"
+authors:
+  - family-names: "Pu"
+    given-names: "Ivan"
+repository-code: "https://github.com/doubleflannel/geothermal-recovery-screening"
+type: software
+abstract: >-
+  Preliminary research repository for a public-data EGS Collab thermal-recovery
+  worked example and geothermal metadata-readiness notes.
+keywords:
+  - geothermal
+  - thermal recovery
+  - permeability
+  - EGS Collab
+  - reproducibility

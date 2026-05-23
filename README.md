@@ -68,5 +68,6 @@ they are not substitutes for the upstream public datasets or papers.
 ## Citation And Reuse
 
 This is preliminary research code and supporting material. Code reuse is covered
-by `LICENSE` once present. Text, figures, processed snippets, and upstream-source
-reuse caveats are described in `NOTICE.md` once present.
+by `LICENSE`. Text, figures, processed snippets, and upstream-source reuse
+caveats are described in `NOTICE.md`. Citation metadata are provided in
+`CITATION.cff`.
