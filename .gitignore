@@ -1,0 +1,45 @@
+# Public packet safety rails.
+# This folder is intended to become a separate public GitHub repo.
+
+# Raw or large scientific data must never be copied into the public packet.
+data/
+data_external/
+external/
+raw/
+raw_data/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.h5
+*.hdf5
+*.las
+*.xlsx
+*.xls
+*.csv
+*.parquet
+*.feather
+*.nc
+*.mat
+
+# Private repo/workflow state.
+backlog/
+.codex/
+notes/private/
+*.log
+.DS_Store
+.env
+.env.*
+*.secret
+*.key
+
+# Build/cache outputs.
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+node_modules/
+
