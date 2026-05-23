@@ -24,8 +24,8 @@ The useful claim is narrow: this public-data recovery example lands on the same 
 
 ## Static Proof Artifacts
 
-- Thermal recovery proof panel: [`artifacts/egs_collab_exp2_thermal_recovery_proof.png`](artifacts/egs_collab_exp2_thermal_recovery_proof.png)
-- Permeability scale-check panel: [`artifacts/egs_collab_exp2_permeability_scale_check.png`](artifacts/egs_collab_exp2_permeability_scale_check.png)
+- Thermal recovery panel: [`../artifacts/egs_collab_exp2_amu34m_recovery_fit.png`](../artifacts/egs_collab_exp2_amu34m_recovery_fit.png)
+- Permeability scale-check panel: [`../artifacts/egs_collab_exp2_amu34m_k_scale_check.png`](../artifacts/egs_collab_exp2_amu34m_k_scale_check.png)
 
 ## What Was Rebuilt
 

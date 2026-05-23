@@ -1,4 +1,4 @@
-# Open Geothermal Thermal-Recovery Screening
+# Geothermal recovery screening
 
 This is a preliminary public-data research packet for testing whether geothermal
 temperature-recovery records can support careful, source-backed permeability
@@ -27,7 +27,7 @@ The focus is on reproducibility and claim discipline:
 
 ## Current Status
 
-One worked public-data proof example is included from an EGS Collab Exp2 case.
+One worked public-data example is included from an EGS Collab Exp2 case.
 That example shows the style of analysis and claim boundary. It does not claim
 that the method is fully validated across many datasets.
 
@@ -75,13 +75,12 @@ useful for deciding whether the candidate is fit-ready or remains blocked.
 
 ## Packet Contents
 
-- [`proof_example_egs_collab_exp2.md`](proof_example_egs_collab_exp2.md) — one sanitized proof example.
-- [`forge_aug2025_request_rationale.md`](forge_aug2025_request_rationale.md) — why the FORGE row-level forcing data
+- [`docs/egs_collab_exp2_worked_example.md`](docs/egs_collab_exp2_worked_example.md) — one sanitized worked example.
+- [`docs/forge_aug2025_metadata_request.md`](docs/forge_aug2025_metadata_request.md) — why the FORGE row-level forcing data
   matter.
-- [`evidence_discipline.md`](evidence_discipline.md) — how source-confirmed, assumption-labeled, and
+- [`docs/evidence_labels.md`](docs/evidence_labels.md) — how source-confirmed, assumption-labeled, and
   blocked claims are separated.
-- [`sources_checked.md`](sources_checked.md) — public sources used in this packet.
-- [`contact_and_citation.md`](contact_and_citation.md) — contact and reuse guidance.
+- [`docs/sources.md`](docs/sources.md) — public sources used in this packet.
 - [`artifacts/`](artifacts/) — small static artifacts only; no raw datasets.
 
 ## Reuse Boundary
