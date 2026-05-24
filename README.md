@@ -8,7 +8,9 @@ scale in `m²`.
 The starting point is the method, not this repository. Purwamaska and Fulton
 show that thermal recovery can carry permeability information when the timing,
 pressure/flow forcing, thermal forcing, geometry, and observation location are
-made explicit. This repo asks a narrower reproducibility question: can that same
+made explicit. For readers new to that paper, `docs/method_basis_purwamaska_fulton.md`
+gives a plain-language summary and links to the 2026 article and supporting
+model archive. This repo asks a narrower reproducibility question: can that same
 style of reasoning be demonstrated from small public-source-derived rows?
 
 The worked example is one EGS Collab Experiment 2 AMU 34 m recovery case. It
@@ -101,6 +103,7 @@ validation.
 - `notebooks/egs_collab_exp2_worked_example.ipynb` — readable walkthrough of the
   worked example.
 - `artifacts/` — regenerated static figures and summary JSON.
+- `docs/method_basis_purwamaska_fulton.md` — plain-language summary of the 2026 method paper behind this repo.
 - `docs/egs_collab_exp2_worked_example.md` — method and interpretation for the
   worked example.
 - `docs/dataset_catalog.md` — compact status catalog for screened routes.
