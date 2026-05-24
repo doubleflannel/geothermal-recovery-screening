@@ -84,11 +84,12 @@ Not claimed:
 - field-scale forecasting;
 - a permeability result for unresolved candidate datasets.
 
-Candidate and blocked routes are listed in `docs/dataset_catalog.md`. A blocked
-or source-request route is not counted as a permeability result here. The
-method basis comes from Purwamaska/Fulton-style thermal recovery; the counted
-result here is this repository's public-data worked example, not a universal
-method validation.
+Candidate and blocked routes are listed in `docs/dataset_catalog.md`; the status
+terms are defined in plain language in `docs/evidence_labels.md`. A blocked or
+source-request route is not counted as a permeability result here. The method
+basis comes from Purwamaska/Fulton-style thermal recovery; the counted result
+here is this repository's public-data worked example, not a universal method
+validation.
 
 ## Repository contents
 
@@ -115,7 +116,12 @@ they are not substitutes for the upstream public datasets or papers.
 
 ## Citation and reuse
 
-This is preliminary research code and supporting material. Code reuse is covered
-by `LICENSE`. Text, figures, processed snippets, and upstream-source reuse
-caveats are described in `NOTICE.md`. Citation metadata are provided in
-`CITATION.cff`.
+If this repository is useful, cite it as preliminary research software using
+`CITATION.cff`. Code reuse is covered by `LICENSE`.
+
+Text, figures, processed snippets, and upstream-source reuse caveats are
+explained in `NOTICE.md`. The included CSVs are small reproducibility snippets,
+not a new raw-data archive and not a blanket reuse license for the original EGS
+Collab datasets, papers, or reports. Check the upstream sources in
+`docs/sources.md` and `data/provenance/egs_collab_exp2_sources.yml` before
+reusing source-derived materials.

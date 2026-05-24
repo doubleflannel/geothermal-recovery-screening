@@ -1,10 +1,23 @@
 # Evidence labels
 
-This repository separates source-backed facts, declared assumptions, and missing
-metadata. The labels are used to keep a useful screen from turning into an
-overstated permeability claim.
+This repository separates what the public rows support, what is assumed, and
+what is still missing. The labels keep a useful thermal-recovery screen from
+turning into an overstated permeability claim.
 
-## Status Labels
+## Plain-language status labels
+
+| Label | Plain meaning | Allowed public use |
+| --- | --- | --- |
+| `Validated / qualified` | A thermal-recovery-derived `m²` estimate has an independent published permeability-scale comparison. The comparison may still be same-depth-scale or same-field rather than exact same sample. | Say the estimate is validated or qualified at the stated comparison tier. Keep the caveat visible. |
+| `Discovery-only` | The public rows and metadata support a defensible thermal-recovery estimate, but there is no independent numeric permeability comparator yet. | Report the `m²` estimate as exploratory or discovery-only. Do not call it validation. |
+| `Source-request-needed` | A paper, report, or portal indicates the missing stream probably exists, but the needed row-level data or metadata are not public here. | Write a narrow request for exact fields, timestamps, units, depth references, and channel definitions. Do not quote a permeability result. |
+| `Metadata limitation` | The route is scientifically useful as a warning example, but timing, channel definitions, depth mapping, or alignment metadata are too weak for a permeability calculation. | Use as a claim-boundary or blocker example. Do not count it as a result. |
+| `Support-only` | The route gives hydraulic or context evidence, but it is not a raw thermal-recovery-to-`m²` case. | Use as an appendix or scale check, not as Purwamaska/Fulton-style thermal-recovery validation. |
+| `Hydraulic support` | Pressure-flow, falloff, transmissivity, or productivity-index evidence can reproduce or contextualize permeability scale, but it does not start from temperature recovery. | Use as supporting comparator material only unless a temperature-recovery bridge is added. |
+
+## Fit-readiness labels
+
+These labels describe why a route can or cannot be computed yet.
 
 | Label | Meaning | Allowed use |
 | --- | --- | --- |
@@ -14,15 +27,15 @@ overstated permeability claim.
 | `model-bridge-blocked` | Rows exist, but the thermal-to-permeability physics bridge is not defensible yet. | Keep the data route alive while treating the model conversion as the blocker. |
 | `supporting-comparator` | A pressure-flow, falloff, transmissivity, or productivity-index calculation checks a permeability scale but is not a thermal-recovery case. | Use as an appendix or context check, not as Purwamaska/Fulton-style validation. |
 
-## Source Status
+## Source status
 
 | Status | Definition | Example |
 | --- | --- | --- |
-| `source-confirmed` | A public source directly states the unit, timestamp convention, channel meaning, depth reference, or operation window. | A dataset page says temperature is in degrees Fahrenheit and depth is in feet. |
-| `assumption-labeled` | The calculation proceeds only after a declared interpretation or sensitivity bound. | A timezone is assigned to a timestamp column that lacks an explicit timezone statement. |
-| `unknown` | The repo has not located enough evidence to support the value or mapping. | A flow column exists in a paper figure but the row-level file and channel definition are not public. |
+| `source-confirmed` | A public source directly states the unit, timestamp convention, channel meaning, depth reference, or operation window. | A dataset page says temperature is in degrees Celsius and depth is measured depth in meters. |
+| `assumption-labeled` | The calculation proceeds only after a declared interpretation or sensitivity bound. | A geometry area is varied because the exact active contact area is not published. |
+| `unknown` | The repo has not located enough evidence to support the value or mapping. | A plotted flow curve exists, but the row-level file and channel definition are not public. |
 
-## Minimum Fit-Ready Metadata
+## Minimum metadata for a thermal-recovery permeability screen
 
 A thermal-recovery permeability screen needs:
 
@@ -40,9 +53,14 @@ A thermal-recovery permeability screen needs:
 Without the forcing rows, a temperature curve can still be screened, but it
 cannot by itself define permeability.
 
-## Claim Boundary
+## Claim boundary
 
 The current EGS Collab case is a worked example: one public recovery signal is
 reduced to a recovery descriptor and compared as a bulk/model-equivalent `m²`
 scale check. It is not measured fracture permeability, exact same-sample
 validation, or evidence that every candidate dataset is usable.
+
+Pressure-flow-only, falloff-only, transmissivity-only, and productivity-index
+routes are not Purwamaska/Fulton-style thermal-recovery validation. They can be
+useful supporting evidence, but they do not count unless a raw temperature
+recovery and thermal-to-`m²` bridge are added.
