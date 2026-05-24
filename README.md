@@ -105,6 +105,7 @@ validation.
   worked example.
 - `docs/dataset_catalog.md` — compact status catalog for screened routes.
 - `docs/evidence_labels.md` — status labels used for source-backed claims.
+- `docs/release_readiness_checklist.md` — checklist for a future versioned release or DOI decision.
 - `docs/sources.md` — public sources used by this repository.
 
 ## Data policy
