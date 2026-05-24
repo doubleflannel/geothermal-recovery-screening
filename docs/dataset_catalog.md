@@ -21,7 +21,7 @@ route is treated as a permeability result.
   timing, channel definitions, or alignment metadata are not strong enough for a
   permeability result.
 - `Support-only`: useful hydraulic or context evidence, but not a counted
-  Purwamaska/Fulton-style thermal-recovery case.
+  Purwamaska and Fulton 2026-style thermal-recovery case.
 
 ## Counted thermal-recovery routes
 
@@ -67,7 +67,7 @@ context to justify a narrow request for missing rows or metadata.
 | Route | Why it is support-only |
 | --- | --- |
 | Newberry 2014 October falloff | Hydraulic reconstruction can reproduce a published pressure-transient scale, but it is not a thermal-recovery route without a thermal-profile-to-`m²` bridge. |
-| Pressure-flow, falloff, transmissivity, and productivity-index routes | These can be useful appendix checks, but they do not count as Purwamaska/Fulton-style thermal-recovery evidence unless a raw temperature recovery and thermal-to-`m²` bridge are added. |
+| Pressure-flow, falloff, transmissivity, and productivity-index routes | These can be useful appendix checks, but they do not count as Purwamaska and Fulton 2026-style thermal-recovery evidence unless a raw temperature recovery and thermal-to-`m²` bridge are added. |
 
 ## How to read this catalog
 

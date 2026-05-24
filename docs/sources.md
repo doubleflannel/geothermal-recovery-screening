@@ -21,6 +21,6 @@ This page lists the public sources used by this repository.
 
 ## Method Basis
 
-- Purwamaska & Fulton 2026 — Borehole thermal recovery as a method for quantifying subsurface permeability: <https://doi.org/10.1029/2025GC012508>
-- ScienceOpen article page for Purwamaska & Fulton 2026: <https://www.scienceopen.com/document?vid=a77faaf4-85c3-4dcf-b1ee-7a99b7c6f46a>
+- Purwamaska and Fulton 2026 — Borehole thermal recovery as a method for quantifying subsurface permeability: <https://doi.org/10.1029/2025GC012508>
+- ScienceOpen article page for Purwamaska and Fulton 2026: <https://www.scienceopen.com/document?vid=a77faaf4-85c3-4dcf-b1ee-7a99b7c6f46a>
 - Zenodo supporting model/data archive: <https://zenodo.org/records/16895640>

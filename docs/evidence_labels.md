@@ -12,7 +12,7 @@ turning into an overstated permeability claim.
 | `Discovery-only` | The public rows and metadata support a defensible thermal-recovery estimate, but there is no independent numeric permeability comparator yet. | Report the `m²` estimate as exploratory or discovery-only. Do not call it validation. |
 | `Source-request-needed` | A paper, report, or portal indicates the missing stream probably exists, but the needed row-level data or metadata are not public here. | Write a narrow request for exact fields, timestamps, units, depth references, and channel definitions. Do not quote a permeability result. |
 | `Metadata limitation` | The route is scientifically useful as a warning example, but timing, channel definitions, depth mapping, or alignment metadata are too weak for a permeability calculation. | Use as a claim-boundary or blocker example. Do not count it as a result. |
-| `Support-only` | The route gives hydraulic or context evidence, but it is not a raw thermal-recovery-to-`m²` case. | Use as an appendix or scale check, not as Purwamaska/Fulton-style thermal-recovery validation. |
+| `Support-only` | The route gives hydraulic or context evidence, but it is not a raw thermal-recovery-to-`m²` case. | Use as an appendix or scale check, not as Purwamaska and Fulton 2026-style thermal-recovery validation. |
 | `Hydraulic support` | Pressure-flow, falloff, transmissivity, or productivity-index evidence can reproduce or contextualize permeability scale, but it does not start from temperature recovery. | Use as supporting comparator material only unless a temperature-recovery bridge is added. |
 
 ## Fit-readiness labels
@@ -25,7 +25,7 @@ These labels describe why a route can or cannot be computed yet.
 | `partial-adjacent-found` | Related streams exist in public sibling sources, but the package is incomplete or not yet aligned. | Use for context, window selection, or a follow-up alignment task. |
 | `source-request-needed` | A report or paper indicates the missing stream likely exists, but the row-level file or metadata was not located publicly. | Write a narrow request for the missing fields, timestamps, units, and channel definitions. |
 | `model-bridge-blocked` | Rows exist, but the thermal-to-permeability physics bridge is not defensible yet. | Keep the data route alive while treating the model conversion as the blocker. |
-| `supporting-comparator` | A pressure-flow, falloff, transmissivity, or productivity-index calculation checks a permeability scale but is not a thermal-recovery case. | Use as an appendix or context check, not as Purwamaska/Fulton-style validation. |
+| `supporting-comparator` | A pressure-flow, falloff, transmissivity, or productivity-index calculation checks a permeability scale but is not a thermal-recovery case. | Use as an appendix or context check, not as Purwamaska and Fulton 2026-style validation. |
 
 ## Source status
 
@@ -61,6 +61,6 @@ scale check. It is not measured fracture permeability, exact same-sample
 validation, or evidence that every candidate dataset is usable.
 
 Pressure-flow-only, falloff-only, transmissivity-only, and productivity-index
-routes are not Purwamaska/Fulton-style thermal-recovery validation. They can be
+routes are not Purwamaska and Fulton 2026-style thermal-recovery validation. They can be
 useful supporting evidence, but they do not count unless a raw temperature
 recovery and thermal-to-`m²` bridge are added.

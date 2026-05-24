@@ -70,7 +70,7 @@ Before tagging, confirm the public text does not claim:
 - geometry-independent permeability;
 - field-scale forecasting;
 - a permeability result for unresolved candidate datasets;
-- pressure-flow-only routes as Purwamaska/Fulton-style thermal-recovery
+- pressure-flow-only routes as Purwamaska and Fulton 2026-style thermal-recovery
   validation.
 
 Allowed wording should stay close to:

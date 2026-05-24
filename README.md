@@ -1,12 +1,12 @@
 # Geothermal recovery screening
 
-This repository is a small public-data test of a Purwamaska/Fulton-style idea:
+This repository is a small public-data test of a Purwamaska and Fulton 2026-style idea:
 a borehole temperature-recovery curve after circulation can be compared with a
 physics-based boundary model to estimate a bulk/model-equivalent permeability
 scale in `m²`.
 
-The starting point is the method, not this repository. Purwamaska and Fulton
-show that thermal recovery can carry permeability information when the timing,
+The starting point is the method, not this repository. The Purwamaska and Fulton 2026 paper
+shows that thermal recovery can carry permeability information when the timing,
 pressure/flow forcing, thermal forcing, geometry, and observation location are
 made explicit. For readers new to that paper, `docs/method_basis_purwamaska_fulton.md`
 gives a plain-language summary and links to the 2026 article and supporting
@@ -21,7 +21,7 @@ inputs.
 ## What this repo proves
 
 This repo shows that one public-data recovery window can be traced through the
-same basic evidence ladder a Purwamaska/Fulton-style review needs:
+same basic evidence ladder a Purwamaska and Fulton 2026-style review needs:
 
 1. processed temperature, pressure, and flow rows from public-source-derived
    inputs;
@@ -33,6 +33,17 @@ same basic evidence ladder a Purwamaska/Fulton-style review needs:
 The result is a scale check, not a direct rock measurement. The preferred value
 is `1.59e-15 m²`, with a source-constrained band of
 `3.52e-16–4.40e-15 m²`.
+
+## Figures
+
+The first figure shows the measured EGS Collab temperature recovery and the
+simple fitted recovery descriptor. The second figure shows the resulting
+bulk/model-equivalent `m²` scale check against nearby published EGS Collab
+permeability ranges.
+
+![EGS Collab Exp2 AMU 34 m recovery fit](artifacts/egs_collab_exp2_amu34m_recovery_fit.png)
+
+![EGS Collab Exp2 AMU 34 m permeability scale check](artifacts/egs_collab_exp2_amu34m_k_scale_check.png)
 
 ## Reproduce
 
@@ -89,7 +100,7 @@ Not claimed:
 Candidate and blocked routes are listed in `docs/dataset_catalog.md`; the status
 terms are defined in plain language in `docs/evidence_labels.md`. A blocked or
 source-request route is not counted as a permeability result here. The method
-basis comes from Purwamaska/Fulton-style thermal recovery; the counted result
+basis comes from Purwamaska and Fulton 2026-style thermal recovery; the counted result
 here is this repository's public-data worked example, not a universal method
 validation.
 
