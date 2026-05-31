@@ -1,55 +1,58 @@
 # Geothermal recovery screening
 
-This repository is a small public-data test of a Purwamaska and Fulton 2026-style idea:
-a borehole temperature-recovery curve after circulation can be compared with a
-physics-based boundary model to estimate a bulk/model-equivalent permeability
-scale in `m²`.
+This repository supports a public-data screening framework for testing a
+Purwamaska and Fulton 2026-style idea: borehole temperature-recovery records can
+sometimes be converted into bulk/model-equivalent permeability estimates in
+`m²`, but only when the forcing, timing, geometry, and claim boundary are
+source-backed.
 
 The starting point is the method, not this repository. The Purwamaska and Fulton 2026 paper
 shows that thermal recovery can carry permeability information when the timing,
 pressure/flow forcing, thermal forcing, geometry, and observation location are
 made explicit. For readers new to that paper, `docs/method_basis_purwamaska_fulton.md`
 gives a plain-language summary and links to the 2026 article and supporting
-model archive. This repo asks a narrower reproducibility question: can that same
-style of reasoning be demonstrated from small public-source-derived rows?
+model archive. This repo asks a narrower public-data question: can that same
+style of reasoning be demonstrated across a small, honest set of public
+temperature-recovery routes?
 
-The broader project is a public-data screening framework. It applies the same
-evidence ladder to a small set of public thermal-recovery routes, separating
-threshold-compatible estimates from discovery-only cases, source-request routes,
-metadata limitations, and support-only hydraulic context. The point is not to
-claim exhaustive coverage of geothermal data; it is to show a transparent way to
-decide when public records can support model-equivalent permeability and when
-they cannot.
+The active demonstration applies an evidence ladder to six
+threshold-compatible public thermal-recovery routes and one below-threshold
+control. This is intentionally a handful-of-public-datasets demonstration, not a
+large database paper or a claim of exhaustive geothermal coverage. The scientific
+claim is the screening logic: decide which public records can support
+model-equivalent permeability, and label which records remain discovery-only,
+figure-only, source-request-needed, metadata-limited, or support-only.
 
-The worked example is one EGS Collab Experiment 2 AMU 34 m recovery case. It
-rebuilds a thermal-recovery descriptor, a pressure/flow/geometry-based
-permeability scale, and static comparison figures from included processed
-inputs.
+An included EGS Collab Experiment 2 AMU 34 m case is the current reproducible
+worked example. It rebuilds one thermal-recovery descriptor, one
+pressure/flow/geometry-based permeability scale, and static comparison figures
+from included processed inputs so the evidence ladder can be inspected end to
+end.
 
-## What this repo proves
+## What this repo is for
 
-This repo shows that one public-data recovery window can be traced through the
-same basic evidence ladder a Purwamaska and Fulton 2026-style review needs:
+The project is closest in spirit to method papers that establish credibility
+across a handful of public benchmark datasets rather than through exhaustive
+surveying. The current count sits in that range: six threshold-compatible
+thermal-recovery routes plus one below-threshold control, compared with adjacent
+public-dataset method papers that use 3, 4, 5, 7, or 22 public datasets or
+record groups.
+
+For each route, the screening ladder asks whether the public evidence includes:
 
 1. processed temperature, pressure, and flow rows from public-source-derived
    inputs;
-2. a fitted recovery descriptor, `tau`, for the AMU 34 m temperature curve;
+2. a fitted recovery descriptor, such as `tau`, for the temperature curve;
 3. a declared boundary calculation, `k_eq = mu * Q * L / (A * deltaP)`;
 4. a bulk/model-equivalent permeability band in `m²`;
-5. a nearby published EGS Collab permeability-scale comparison.
+5. a nearby published permeability-scale comparison when validation is claimed.
 
-The result is a scale check, not a direct rock measurement. The preferred value
-is `1.59e-15 m²`, with a source-constrained band of
+The EGS Collab worked example gives one checked result within that broader
+screen. It is a scale check, not a direct rock measurement: preferred
+`1.59e-15 m²`, with a source-constrained band of
 `3.52e-16–4.40e-15 m²`.
 
-The active AGU-facing screening set extends that same ladder beyond the worked
-example. It currently uses six threshold-compatible public thermal-recovery
-routes and one below-threshold control as a first demonstration set. That scale
-is deliberately modest: like adjacent public-dataset method papers built from a
-handful of benchmark datasets, the contribution is a reusable screening logic,
-not a claim that every geothermal public dataset has been surveyed.
-
-## Figures
+## Included worked-example figures
 
 The first figure shows the measured EGS Collab temperature recovery and the
 simple fitted recovery descriptor. The second figure shows the resulting
@@ -97,7 +100,11 @@ Expected checked values:
 
 ## Evidence boundary
 
-Allowed statement:
+Allowed statements:
+
+> This repository demonstrates a public-data evidence ladder for deciding when
+> geothermal temperature-recovery records can support claim-bounded
+> bulk/model-equivalent permeability estimates.
 
 > The EGS Collab Exp2 AMU 34 m worked example gives a public-data
 > bulk/model-equivalent permeability scale check that is numerically consistent
@@ -115,9 +122,9 @@ Not claimed:
 Candidate and blocked routes are listed in `docs/dataset_catalog.md`; the status
 terms are defined in plain language in `docs/evidence_labels.md`. A blocked or
 source-request route is not counted as a permeability result here. The method
-basis comes from Purwamaska and Fulton 2026-style thermal recovery; the counted result
-here is this repository's public-data worked example, not a universal method
-validation.
+basis comes from Purwamaska and Fulton 2026-style thermal recovery. The current
+public repo includes one fully reproducible worked example plus a screening
+catalog; it is not a universal method validation.
 
 ## Repository contents
 
