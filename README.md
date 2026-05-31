@@ -13,6 +13,14 @@ gives a plain-language summary and links to the 2026 article and supporting
 model archive. This repo asks a narrower reproducibility question: can that same
 style of reasoning be demonstrated from small public-source-derived rows?
 
+The broader project is a public-data screening framework. It applies the same
+evidence ladder to a small set of public thermal-recovery routes, separating
+threshold-compatible estimates from discovery-only cases, source-request routes,
+metadata limitations, and support-only hydraulic context. The point is not to
+claim exhaustive coverage of geothermal data; it is to show a transparent way to
+decide when public records can support model-equivalent permeability and when
+they cannot.
+
 The worked example is one EGS Collab Experiment 2 AMU 34 m recovery case. It
 rebuilds a thermal-recovery descriptor, a pressure/flow/geometry-based
 permeability scale, and static comparison figures from included processed
@@ -33,6 +41,13 @@ same basic evidence ladder a Purwamaska and Fulton 2026-style review needs:
 The result is a scale check, not a direct rock measurement. The preferred value
 is `1.59e-15 m²`, with a source-constrained band of
 `3.52e-16–4.40e-15 m²`.
+
+The active AGU-facing screening set extends that same ladder beyond the worked
+example. It currently uses six threshold-compatible public thermal-recovery
+routes and one below-threshold control as a first demonstration set. That scale
+is deliberately modest: like adjacent public-dataset method papers built from a
+handful of benchmark datasets, the contribution is a reusable screening logic,
+not a claim that every geothermal public dataset has been surveyed.
 
 ## Figures
 
