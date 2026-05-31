@@ -55,9 +55,10 @@ cannot by itself define permeability.
 
 ## Claim boundary
 
-The current EGS Collab case is a worked example: one public recovery signal is
-reduced to a recovery descriptor and compared as a bulk/model-equivalent `m²`
-scale check. It is not measured fracture permeability, exact same-sample
+The current public release includes one EGS Collab worked example, but the
+project identity is the screening ladder across public thermal-recovery routes.
+A route can be counted only when the evidence supports the stated label. A
+worked example is not measured fracture permeability, exact same-sample
 validation, or evidence that every candidate dataset is usable.
 
 Pressure-flow-only, falloff-only, transmissivity-only, and productivity-index

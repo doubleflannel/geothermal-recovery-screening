@@ -9,11 +9,13 @@ authors:
 repository-code: "https://github.com/doubleflannel/geothermal-recovery-screening"
 type: software
 abstract: >-
-  Preliminary research repository for a public-data EGS Collab thermal-recovery
-  worked example and geothermal metadata-readiness notes.
+  Preliminary research repository for a public-data geothermal thermal-recovery
+  screening framework, with one reproducible worked example and a claim-boundary
+  catalog for source-backed permeability estimates.
 keywords:
   - geothermal
   - thermal recovery
   - permeability
-  - EGS Collab
+  - evidence ladder
+  - public data
   - reproducibility

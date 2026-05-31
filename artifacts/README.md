@@ -1,6 +1,8 @@
 # Artifacts
 
-This folder holds sanitized static artifacts for the EGS Collab worked example.
+This folder holds sanitized static artifacts for the public geothermal
+thermal-recovery screening framework. The current included figures are for the
+EGS Collab worked example.
 
 Current artifacts:
 

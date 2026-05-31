@@ -1,6 +1,6 @@
 # Method basis: Purwamaska and Fulton 2026
 
-This repository is built around a simple idea from Purwamaska and Fulton 2026: after fluid circulation disturbs borehole temperatures, the way the
+This repository screens public datasets around a simple idea from Purwamaska and Fulton 2026: after fluid circulation disturbs borehole temperatures, the way the
 borehole warms back toward background temperature can contain information about
 where the surrounding rock is more permeable.
 
@@ -44,19 +44,21 @@ This repository borrows the evidence structure, not the exact full model:
 5. compare that scale against published permeability context when available;
 6. label unresolved or assumption-heavy routes honestly.
 
-The included EGS Collab example is therefore a public-data demonstration of the
-style of reasoning. It is not a reproduction of every Purwamaska and Fulton 2026 model
-simulation.
+The screening catalog applies this structure across a small public-dataset
+demonstration set. The included EGS Collab example is one reproducible
+implementation of the style of reasoning, not a reproduction of every
+Purwamaska and Fulton 2026 model simulation.
 
 ## What this repo does not claim
 
-This repository does not claim that the EGS Collab worked example is the same
-field setting as the Purwamaska and Fulton 2026 paper. It also does not claim measured
-rock permeability, exact-fracture permeability, or universal validation of the
-method.
+This repository does not claim that the active public routes are the same field
+setting as the Purwamaska and Fulton 2026 paper. It also does not claim measured
+rock permeability, exact-fracture permeability, exhaustive geothermal coverage,
+or universal validation of the method.
 
 The narrower claim is:
 
-> One public EGS Collab thermal-recovery window can be reduced to a recovery
-> descriptor and mapped to a bulk/model-equivalent permeability scale in `m²`
-> under declared pressure/flow/geometry assumptions.
+> Public geothermal temperature-recovery records can be screened through an
+> evidence ladder to decide which routes support claim-bounded
+> bulk/model-equivalent permeability estimates in `m²`, and which routes remain
+> discovery-only, source-request-needed, metadata-limited, or support-only.

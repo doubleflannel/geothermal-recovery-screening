@@ -6,8 +6,8 @@ tag, archive, or DOI.
 
 ## Candidate release identity
 
-- Tag name: `v0.1.0` for the first stable public worked-example release.
-- Release title: `EGS Collab Exp2 thermal-recovery worked example`.
+- Tag name: `v0.1.0` for the first stable public screening-framework release.
+- Release title: `Public geothermal thermal-recovery screening framework`.
 - DOI decision: defer Zenodo DOI until the README, notebook, dataset catalog,
   citation/reuse language, and public QC have passed a final review.
 
@@ -75,8 +75,12 @@ Before tagging, confirm the public text does not claim:
 
 Allowed wording should stay close to:
 
-> This repository provides one public-data bulk/model-equivalent permeability
-> scale check for an EGS Collab Exp2 thermal-recovery worked example.
+> This repository demonstrates a public-data evidence ladder for deciding when
+> geothermal temperature-recovery records can support claim-bounded
+> bulk/model-equivalent permeability estimates.
+
+It is also acceptable to say that the current release includes one reproducible
+EGS Collab worked example as an inspectable implementation of the ladder.
 
 ## DOI gate
 

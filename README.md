@@ -36,7 +36,8 @@ across a handful of public benchmark datasets rather than through exhaustive
 surveying. The current count sits in that range: six threshold-compatible
 thermal-recovery routes plus one below-threshold control, compared with adjacent
 public-dataset method papers that use 3, 4, 5, 7, or 22 public datasets or
-record groups.
+record groups. See `docs/public_dataset_method_analogs.md` for the comparison
+frame.
 
 For each route, the screening ladder asks whether the public evidence includes:
 
@@ -141,6 +142,8 @@ catalog; it is not a universal method validation.
   worked example.
 - `docs/dataset_catalog.md` — compact status catalog for screened routes.
 - `docs/evidence_labels.md` — status labels used for source-backed claims.
+- `docs/public_dataset_method_analogs.md` — why a handful of public datasets is
+  a reasonable method-demonstration scale.
 - `docs/release_readiness_checklist.md` — checklist for a future versioned release or DOI decision.
 - `docs/sources.md` — public sources used by this repository.
 

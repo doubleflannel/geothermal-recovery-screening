@@ -1,6 +1,10 @@
 # Data
 
-This directory contains small processed public-source-derived inputs for the EGS Collab Exp2 AMU 34 m worked example. It intentionally does not contain raw HDF5 files, raw ZIP exports, full private processed datasets, candidate-funnel files, or unpublished source rows.
+This directory contains small processed public-source-derived inputs for the
+reproducible worked example inside the public geothermal thermal-recovery
+screening framework. It intentionally does not contain raw HDF5 files, raw ZIP
+exports, full private processed datasets, candidate-funnel files, or unpublished
+source rows.
 
 ## Files
 
@@ -9,4 +13,6 @@ This directory contains small processed public-source-derived inputs for the EGS
 - `processed/egs_collab_exp2_published_k_ranges.csv` — nearby published EGS Collab permeability ranges used only as a scale check.
 - `provenance/egs_collab_exp2_sources.yml` — source URLs, local derivation notes, and claim boundaries.
 
-These files are for reproducibility of the lightweight worked example. They are not a replacement for the original public datasets or papers.
+These files are for reproducibility of the lightweight worked example. They are
+not a replacement for the original public datasets or papers, and they do not
+represent the full active screening set.
