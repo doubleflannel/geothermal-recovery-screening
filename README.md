@@ -43,9 +43,9 @@ The first figure shows the Brady/PoroTomo cold-slug DTS alignment and selected
 recovery window. The second figure shows the slug-drainage bridge and comparison
 against independent same-field/fault-scale permeability context.
 
-![Brady/PoroTomo 56-1 DTS alignment](artifacts/brady_porotomo_56_1_dts_alignment.png)
+![Brady/PoroTomo 56-1 DTS alignment](artifacts/brady_porotomo_56_1_dts_alignment.png?v=20260601-a292713)
 
-![Brady/PoroTomo 56-1 slug bridge](artifacts/brady_porotomo_56_1_slug_bridge.png)
+![Brady/PoroTomo 56-1 slug bridge](artifacts/brady_porotomo_56_1_slug_bridge.png?v=20260601-a292713)
 
 ## Reproduce
 
