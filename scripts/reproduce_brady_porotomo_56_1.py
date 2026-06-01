@@ -237,11 +237,11 @@ def plot_slug_bridge(bridge: dict[str, float]) -> None:
     fig, ax = plt.subplots(figsize=(13.2, 8.6))
     fig.patch.set_facecolor(BG)
     fig.subplots_adjust(left=0.18, right=0.97, top=0.74, bottom=0.36)
-    fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 P/F permeability bridge", fontsize=19, fontweight="bold", color=INK)
+    fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 thermal-recovery permeability bridge", fontsize=19, fontweight="bold", color=INK)
     fig.text(
         0.04,
         0.885,
-        "Blue = threshold-compatible P/F route. Dashed line = approximate 1e-14 m² method-effectiveness range from the 2026 motivating model setting.",
+        "Blue = threshold-compatible thermal-recovery route. Dashed line = approximate 1e-14 m² method-effectiveness range from the 2026 motivating model setting.",
         fontsize=11,
         color=MUTED,
     )
@@ -264,7 +264,7 @@ def plot_slug_bridge(bridge: dict[str, float]) -> None:
         ax.text(center, yi + 0.25, f"central {center:.2e}", ha="center", va="bottom", fontsize=9, color=INK, bbox={"boxstyle": "round,pad=0.20", "facecolor": "white", "edgecolor": GRID})
 
     ax.axvline(THRESHOLD_M2, color=INK, linewidth=2.0, linestyle="--", alpha=0.75)
-    ax.text(THRESHOLD_M2 * 1.25, max(y) + 0.42, "~1e-14 m²\nP/F effective range", fontsize=9.5, color=INK, va="top", bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID})
+    ax.text(THRESHOLD_M2 * 1.25, max(y) + 0.42, "~1e-14 m²\nmethod effective range", fontsize=9.5, color=INK, va="top", bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID})
     ax.set_xscale("log")
     ax.set_xlim(1e-16, 1e-11)
     ax.set_yticks(y)
