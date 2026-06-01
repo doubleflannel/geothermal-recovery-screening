@@ -8,6 +8,7 @@ Current artifacts:
 
 - `brady_porotomo_56_1_dts_alignment.png` - cold-slug DTS alignment and recovery-window evidence.
 - `brady_porotomo_56_1_slug_bridge.png` - reproduced slug-drainage bridge and permeability comparison.
+- `brady_porotomo_56_1_thermal_recovery_bridge.png` - README-facing copy of the thermal-recovery permeability bridge, kept separate to avoid stale image caching.
 - `brady_porotomo_56_1_summary.json` - reproduced checked values and claim boundary.
 
 Allowed here:

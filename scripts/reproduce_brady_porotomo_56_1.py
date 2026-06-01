@@ -295,6 +295,7 @@ def plot_slug_bridge(bridge: dict[str, float]) -> None:
         ORANGE,
     )
     fig.savefig(ARTIFACTS / "brady_porotomo_56_1_slug_bridge.png", dpi=180)
+    fig.savefig(ARTIFACTS / "brady_porotomo_56_1_thermal_recovery_bridge.png", dpi=180)
     plt.close(fig)
 
 

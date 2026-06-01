@@ -45,7 +45,7 @@ against independent same-field/fault-scale permeability context.
 
 ![Brady/PoroTomo 56-1 DTS alignment](artifacts/brady_porotomo_56_1_dts_alignment.png?v=20260601-a292713)
 
-![Brady/PoroTomo 56-1 slug bridge](artifacts/brady_porotomo_56_1_slug_bridge.png?v=20260601-a292713)
+![Brady/PoroTomo 56-1 slug bridge](artifacts/brady_porotomo_56_1_thermal_recovery_bridge.png)
 
 ## Reproduce
 
