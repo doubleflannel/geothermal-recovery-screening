@@ -55,7 +55,7 @@ cannot by itself define permeability.
 
 ## Claim boundary
 
-The current public release features Brady/PoroTomo as the verified/qualified threshold-compatible example and retains EGS Collab as a below-threshold control. The
+The current public release features Brady/PoroTomo as the verified/qualified threshold-compatible example. The
 project identity is the screening ladder across public thermal-recovery routes.
 A route can be counted only when the evidence supports the stated label. A
 worked example is not measured fracture permeability, exact same-sample

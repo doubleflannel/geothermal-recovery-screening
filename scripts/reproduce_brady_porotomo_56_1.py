@@ -6,6 +6,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+import textwrap
 from itertools import product
 from pathlib import Path
 
@@ -19,12 +20,18 @@ ARTIFACTS = ROOT / "artifacts"
 DESCRIPTOR_PATH = DATA / "brady_porotomo_56_1_recovery_descriptors.csv"
 ALIGNMENT_PATH = DATA / "brady_porotomo_56_1_alignment_summary.json"
 
-MATLAB_BLUE = "#0072BD"
-MATLAB_ORANGE = "#D95319"
-MATLAB_YELLOW = "#EDB120"
 INK = "#111827"
-MUTED = "#475569"
-GRID = "#e2e8f0"
+MUTED = "#4b5563"
+GRID = "#e5e7eb"
+BLUE = "#2563eb"
+ORANGE = "#d97706"
+TEAL = "#0f766e"
+GRAY = "#64748b"
+RED = "#dc2626"
+YELLOW = "#fbbf24"
+PAPER = "#ffffff"
+BG = "#f8fafc"
+THRESHOLD_M2 = 1.0e-14
 
 
 def read_csv_rows(path: Path) -> list[dict[str, str]]:
@@ -47,7 +54,7 @@ def read_descriptors() -> list[dict[str, float | str]]:
 
 def open_interval_descriptor(rows: list[dict[str, float | str]]) -> dict[str, float | str]:
     for row in rows:
-        if row["band"] == "350–372 m open interval":
+        if row["band"] == "350-372 m open interval" or row["band"] == "350–372 m open interval":
             return row
     raise SystemExit("missing 350-372 m open interval descriptor")
 
@@ -121,86 +128,144 @@ def fmt_m2(value: float) -> str:
     return f"{value:.2e} m²"
 
 
-def plot_slug_bridge(
-    descriptors: list[dict[str, float | str]],
-    sensitivity_rows: list[dict[str, float]],
-    bridge: dict[str, float],
-) -> None:
+def clean_label(text: object) -> str:
+    return str(text).replace("–", "-")
+
+
+def style_axes(ax: plt.Axes) -> None:
+    ax.set_facecolor(PAPER)
+    ax.grid(True, axis="x", which="both", color=GRID, alpha=0.9)
+    for spine in ["top", "right", "left"]:
+        ax.spines[spine].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+
+
+def add_card(fig: plt.Figure, xywh: tuple[float, float, float, float], title: str, body: str, color: str) -> None:
+    ax = fig.add_axes(xywh)
+    ax.set_axis_off()
+    rect = plt.Rectangle((0, 0), 1, 1, transform=ax.transAxes, facecolor=PAPER, edgecolor=GRID, linewidth=1.2)
+    ax.add_patch(rect)
+    ax.add_patch(plt.Rectangle((0, 0), 0.018, 1, transform=ax.transAxes, facecolor=color, edgecolor=color))
+    wrapped = "\n".join(textwrap.wrap(body, width=54, break_long_words=False))
+    ax.text(0.055, 0.78, title, transform=ax.transAxes, fontsize=12, fontweight="bold", color=INK, va="top")
+    ax.text(0.055, 0.50, wrapped, transform=ax.transAxes, fontsize=9.2, color=MUTED, va="top", linespacing=1.35)
+
+
+def plot_dts_alignment(descriptors: list[dict[str, float | str]], alignment: dict[str, object]) -> None:
     ARTIFACTS.mkdir(exist_ok=True)
-    fig, axes = plt.subplots(2, 1, figsize=(11.2, 8.4), gridspec_kw={"height_ratios": [1.0, 1.25]})
-    fig.subplots_adjust(left=0.23, right=0.96, top=0.88, bottom=0.11, hspace=0.42)
-    fig.suptitle(
-        "Brady/PoroTomo 56-1 public reproduction",
-        fontsize=17,
-        fontweight="bold",
-        color=INK,
-        x=0.14,
-        ha="left",
-    )
+    fig, ax = plt.subplots(figsize=(13.2, 8.6))
+    fig.patch.set_facecolor(BG)
+    fig.subplots_adjust(left=0.30, right=0.97, top=0.74, bottom=0.36)
+    fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 evidence ladder", fontsize=19, fontweight="bold", color=INK)
     fig.text(
-        0.14,
-        0.915,
-        "Processed public-source snippets reproduce the recovery descriptor and slug-drainage bridge.",
-        fontsize=10.5,
+        0.04,
+        0.885,
+        "P/F-core or near-core threshold-compatible route. Temperature recovery is public-source-derived; raw rows are not redistributed here.",
+        fontsize=11,
         color=MUTED,
     )
 
-    ax = axes[0]
-    bands = [str(row["band"]) for row in descriptors]
+    bands = [clean_label(row["band"]) for row in descriptors]
     tau = [float(row["tau_h"]) for row in descriptors]
-    colors = [MATLAB_ORANGE, MATLAB_BLUE, "#7E2F8E"]
-    y = np.arange(len(bands))
+    colors = [ORANGE, TEAL, BLUE]
+    y = np.arange(len(bands))[::-1]
     ax.barh(y, tau, color=colors, alpha=0.88)
     ax.set_yticks(y)
-    ax.set_yticklabels(bands)
-    ax.invert_yaxis()
-    ax.set_xlabel("Fitted recovery descriptor tau (h)")
-    ax.set_title("Temperature-recovery descriptors", loc="left", fontsize=12)
-    ax.grid(True, axis="x", color=GRID)
-    for idx, value in enumerate(tau):
-        ax.text(value + 2, idx, f"{value:.1f} h", va="center", fontsize=9, color=INK)
+    ax.set_yticklabels(bands, fontsize=10)
+    ax.set_xlabel("Fitted recovery descriptor tau (h)", fontsize=11)
+    ax.set_title("Raw-temperature evidence reduced to recovery descriptors", loc="left", fontsize=13, fontweight="bold", pad=12)
+    style_axes(ax)
+    ax.set_xlim(0, max(tau) * 1.18)
+    for yi, value in zip(y, tau):
+        ax.text(value + 2, yi, f"{value:.1f} h", va="center", fontsize=9.5, color=INK)
 
-    ax = axes[1]
+    add_card(
+        fig,
+        (0.04, 0.06, 0.28, 0.22),
+        "Known",
+        f"DTS window: {alignment['dts_start_utc']} to {alignment['dts_end_utc']}\nOpen interval warms from {float(alignment['open_interval_350_372m_temp_first_C']):.1f} to {float(alignment['open_interval_350_372m_temp_last_C']):.1f} °C.",
+        BLUE,
+    )
+    add_card(
+        fig,
+        (0.36, 0.06, 0.28, 0.22),
+        "P/F descriptor",
+        "Open interval tau = 118.08 h with RMSE = 0.472 °C. This is the thermal-recovery signal carried into the permeability bridge.",
+        TEAL,
+    )
+    add_card(
+        fig,
+        (0.68, 0.06, 0.28, 0.22),
+        "Claim boundary",
+        "This panel proves the recovery descriptor and timing window, not exact outflow geometry or measured rock permeability.",
+        ORANGE,
+    )
+    fig.savefig(ARTIFACTS / "brady_porotomo_56_1_dts_alignment.png", dpi=180)
+    plt.close(fig)
+
+
+def plot_slug_bridge(bridge: dict[str, float]) -> None:
+    ARTIFACTS.mkdir(exist_ok=True)
+    fig, ax = plt.subplots(figsize=(13.2, 8.6))
+    fig.patch.set_facecolor(BG)
+    fig.subplots_adjust(left=0.30, right=0.97, top=0.74, bottom=0.36)
+    fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 P/F permeability bridge", fontsize=19, fontweight="bold", color=INK)
+    fig.text(
+        0.04,
+        0.885,
+        "Blue = threshold-compatible P/F route. Dashed line = approximate 1e-14 m² method-effectiveness range from the 2026 motivating model setting.",
+        fontsize=11,
+        color=MUTED,
+    )
+
     rows = [
-        ("Full sensitivity", bridge["full_min_m2"], bridge["full_median_m2"], bridge["full_max_m2"], MUTED),
-        (
-            "Preferred range",
-            bridge["preferred_min_m2"],
-            bridge["central_m2"],
-            bridge["preferred_max_m2"],
-            MATLAB_ORANGE,
-        ),
-        ("Patterson context", 2.24e-14, 4.43e-14, 6.62e-14, MATLAB_BLUE),
+        ("Brady preferred range", bridge["preferred_min_m2"], bridge["central_m2"], bridge["preferred_max_m2"], BLUE),
+        ("Full sensitivity", bridge["full_min_m2"], bridge["full_median_m2"], bridge["full_max_m2"], GRAY),
+        ("Patterson context", 2.24e-14, 4.43e-14, 6.62e-14, TEAL),
     ]
-    y = np.arange(len(rows))
-    for idx, (label, low, center, high, color) in enumerate(rows):
+    y = np.arange(len(rows))[::-1]
+    for yi, (label, low, center, high, color) in zip(y, rows):
         plot_high = min(high, 1.0e-12)
-        ax.plot([low, plot_high], [idx, idx], color=color, linewidth=8, solid_capstyle="round")
-        ax.scatter([center], [idx], s=110, color=MATLAB_YELLOW, edgecolor=INK, zorder=4)
-        if high / low < 10:
-            ax.text(
-                math.sqrt(low * plot_high),
-                idx + 0.18,
-                f"{fmt_m2(low)} to {fmt_m2(high)}",
-                ha="center",
-                fontsize=8.5,
-                color=MUTED,
-            )
-        else:
-            ax.text(low, idx + 0.18, fmt_m2(low), ha="left", fontsize=8.5, color=MUTED)
+        ax.plot([low, plot_high], [yi, yi], color=color, linewidth=9, solid_capstyle="round", alpha=0.88)
+        ax.scatter([low, plot_high], [yi, yi], color=color, s=68, zorder=3)
+        ax.scatter([center], [yi], marker="*", s=240, color=YELLOW, edgecolor=INK, linewidth=1.0, zorder=4)
+        if label != "Patterson context":
+            ax.text(low, yi - 0.25, fmt_m2(low), ha="left", va="top", fontsize=9, color=MUTED)
             high_label = f"extends to {fmt_m2(high)}" if high > 1.0e-12 else fmt_m2(high)
-            ax.text(plot_high, idx + 0.18, high_label, ha="right", fontsize=8.5, color=MUTED)
-    ax.axvline(1.0e-14, color=INK, linestyle=":", linewidth=1.6, alpha=0.75)
-    ax.text(1.08e-14, -0.38, "1e-14 method-effectiveness threshold", fontsize=8.8, color=INK)
-    ax.set_xscale("log")
-    ax.set_xlim(1.0e-16, 1.0e-12)
-    ax.set_yticks(y)
-    ax.set_yticklabels([row[0] for row in rows])
-    ax.invert_yaxis()
-    ax.set_xlabel("Bulk/model-equivalent permeability (m²)")
-    ax.set_title("Slug-drainage permeability bridge", loc="left", fontsize=12)
-    ax.grid(True, axis="x", which="both", color=GRID)
+            ax.text(plot_high, yi - 0.25, high_label, ha="right", va="top", fontsize=9, color=MUTED)
+        ax.text(center, yi + 0.25, f"central {center:.2e}", ha="center", va="bottom", fontsize=9, color=INK, bbox={"boxstyle": "round,pad=0.20", "facecolor": "white", "edgecolor": GRID})
 
+    ax.axvline(THRESHOLD_M2, color=INK, linewidth=2.0, linestyle="--", alpha=0.75)
+    ax.text(THRESHOLD_M2 * 1.25, max(y) + 0.42, "~1e-14 m²\nP/F effective range", fontsize=9.5, color=INK, va="top", bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID})
+    ax.set_xscale("log")
+    ax.set_xlim(1e-16, 1e-12)
+    ax.set_yticks(y)
+    ax.set_yticklabels([row[0] for row in rows], fontsize=10)
+    ax.set_xlabel("Model-equivalent permeability scale (m², log scale)", fontsize=11)
+    ax.set_title("Claim-bounded m² range", loc="left", fontsize=13, fontweight="bold", pad=12)
+    style_axes(ax)
+
+    add_card(
+        fig,
+        (0.04, 0.06, 0.28, 0.22),
+        "Result",
+        "Central k_eq = 7.35e-14 m². Preferred range = 6.26e-15 to 9.11e-13 m².",
+        BLUE,
+    )
+    add_card(
+        fig,
+        (0.36, 0.06, 0.28, 0.22),
+        "Comparison tier",
+        "Independent context is same-field/fault-scale same-order support, mostly 2.24e-14 to 6.62e-14 m².",
+        TEAL,
+    )
+    add_card(
+        fig,
+        (0.68, 0.06, 0.28, 0.22),
+        "Caveat",
+        "Dominant uncertainty is effective outflow geometry, especially L/A; excess head is secondary.",
+        ORANGE,
+    )
     fig.savefig(ARTIFACTS / "brady_porotomo_56_1_slug_bridge.png", dpi=180)
     plt.close(fig)
 
@@ -209,34 +274,32 @@ def main() -> None:
     descriptors = read_descriptors()
     open_interval = open_interval_descriptor(descriptors)
     alignment = json.loads(ALIGNMENT_PATH.read_text())
-    sensitivity_rows, bridge = permeability_sensitivity()
-    plot_slug_bridge(descriptors, sensitivity_rows, bridge)
+    _sensitivity_rows, bridge = permeability_sensitivity()
+    plot_dts_alignment(descriptors, alignment)
+    plot_slug_bridge(bridge)
 
     summary = {
         "case": "brady_porotomo_56_1",
         "status": "qualified_threshold_compatible_public_data_route",
+        "pf_2026_label": "P/F-core or near-core threshold-compatible",
         "open_interval_tau_h": open_interval["tau_h"],
         "open_interval_rmse_c": open_interval["rmse_C"],
         "dts_window_utc": [alignment["dts_start_utc"], alignment["dts_end_utc"]],
         "slug_volume_m3": bridge["slug_volume_m3"],
         "slug_drain_hours": bridge["slug_drain_hours"],
         "k_eq_central_m2": bridge["central_m2"],
-        "k_eq_preferred_range_m2": [
-            bridge["preferred_min_m2"],
-            bridge["preferred_max_m2"],
-        ],
+        "k_eq_preferred_range_m2": [bridge["preferred_min_m2"], bridge["preferred_max_m2"]],
         "k_eq_full_range_m2": [bridge["full_min_m2"], bridge["full_max_m2"]],
         "independent_comparison_context_m2": [2.24e-14, 6.62e-14],
         "comparison_tier": "same-field/fault-scale same-order support",
+        "dominant_uncertainty": "effective outflow geometry, especially L/A; excess head is secondary",
         "claim_boundary": (
             "bulk/model-equivalent slug-drainage estimate; not measured rock "
             "permeability, exact fracture permeability, or exact outflow-patch validation"
         ),
     }
     ARTIFACTS.mkdir(exist_ok=True)
-    (ARTIFACTS / "brady_porotomo_56_1_summary.json").write_text(
-        json.dumps(summary, indent=2) + "\n"
-    )
+    (ARTIFACTS / "brady_porotomo_56_1_summary.json").write_text(json.dumps(summary, indent=2) + "\n")
 
     print(f"open_interval_tau_h = {float(summary['open_interval_tau_h']):.2f}")
     print(f"open_interval_rmse_c = {float(summary['open_interval_rmse_c']):.3f}")

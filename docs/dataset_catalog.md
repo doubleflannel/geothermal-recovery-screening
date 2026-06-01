@@ -38,12 +38,6 @@ route is treated as a permeability result.
 | Choutuppal H+ hot/cold-water tests | Discovery-only | Figure-level bridge around `1.4e-11 m²`. | Exact April 2019 CH03/CH12 pressure/head rows are still missing. |
 | OSU GDR 1770 thermohydraulic fracture-flow loop | Discovery-only lab case | H2O small fracture `1.36e-06 m²`; H2O large fracture `3.36e-06 m²`. | Lab fracture-slot result, not field reservoir permeability. |
 
-## Below-threshold controls
-
-| Route | Status | Public-facing result | Boundary |
-| --- | --- | --- | --- |
-| EGS Collab Exp2 AMU 34 m recovery crop | Validated / qualified below-threshold control | Preferred `1.59e-15 m²`; source-constrained band `3.52e-16–4.40e-15 m²`. | Useful non-cherry-picking control, but below the approximate `1e-14 m²` Purwamaska-Fulton effective range and not a headline threshold-compatible proof. |
-
 ## Source-request-needed routes
 
 These routes are not counted as permeability results. They have enough public

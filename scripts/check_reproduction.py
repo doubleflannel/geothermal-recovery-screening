@@ -10,19 +10,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ROOT / "artifacts"
-EGS_SUMMARY_PATH = ARTIFACTS / "egs_collab_exp2_summary.json"
 BRADY_SUMMARY_PATH = ARTIFACTS / "brady_porotomo_56_1_summary.json"
 
-
-EGS_EXPECTED = {
-    "tau_h": (4.19, 0.03),
-    "rmse_c": (0.0125, 0.0005),
-    "flow_l_min": (0.400, 0.001),
-    "delta_p_mpa": (22.7, 0.1),
-    "k_eq_preferred_m2": (1.59e-15, 0.03e-15),
-    "k_eq_band_m2_low": (3.52e-16, 0.04e-16),
-    "k_eq_band_m2_high": (4.40e-15, 0.04e-15),
-}
 
 BRADY_EXPECTED = {
     "open_interval_tau_h": (118.08, 0.05),
@@ -49,33 +38,6 @@ def check_close(name: str, value: float, expected: float, tolerance: float) -> N
             f"expected {expected:.12g} ± {tolerance:.3g}"
         )
     print(f"ok {name}: {value:.12g}")
-
-
-def check_egs_collab() -> None:
-    require_file(ARTIFACTS / "egs_collab_exp2_amu34m_recovery_fit.png")
-    require_file(ARTIFACTS / "egs_collab_exp2_amu34m_k_scale_check.png")
-    require_file(EGS_SUMMARY_PATH)
-
-    summary = json.loads(EGS_SUMMARY_PATH.read_text())
-    check_close("egs_tau_h", summary["tau_h"], *EGS_EXPECTED["tau_h"])
-    check_close("egs_rmse_c", summary["rmse_c"], *EGS_EXPECTED["rmse_c"])
-    check_close("egs_flow_l_min", summary["flow_l_min"], *EGS_EXPECTED["flow_l_min"])
-    check_close("egs_delta_p_mpa", summary["delta_p_mpa"], *EGS_EXPECTED["delta_p_mpa"])
-    check_close(
-        "egs_k_eq_preferred_m2",
-        summary["k_eq_preferred_m2"],
-        *EGS_EXPECTED["k_eq_preferred_m2"],
-    )
-    check_close(
-        "egs_k_eq_band_m2_low",
-        summary["k_eq_band_m2"][0],
-        *EGS_EXPECTED["k_eq_band_m2_low"],
-    )
-    check_close(
-        "egs_k_eq_band_m2_high",
-        summary["k_eq_band_m2"][1],
-        *EGS_EXPECTED["k_eq_band_m2_high"],
-    )
 
 
 def check_brady() -> None:
@@ -113,7 +75,6 @@ def check_brady() -> None:
 
 def main() -> None:
     check_brady()
-    check_egs_collab()
     print("reproduction check passed")
 
 

@@ -1,6 +1,7 @@
 {
   "case": "brady_porotomo_56_1",
   "status": "qualified_threshold_compatible_public_data_route",
+  "pf_2026_label": "P/F-core or near-core threshold-compatible",
   "open_interval_tau_h": 118.08259180198826,
   "open_interval_rmse_c": 0.4716850152676164,
   "dts_window_utc": [
@@ -23,5 +24,6 @@
     6.62e-14
   ],
   "comparison_tier": "same-field/fault-scale same-order support",
+  "dominant_uncertainty": "effective outflow geometry, especially L/A; excess head is secondary",
   "claim_boundary": "bulk/model-equivalent slug-drainage estimate; not measured rock permeability, exact fracture permeability, or exact outflow-patch validation"
 }

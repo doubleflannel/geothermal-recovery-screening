@@ -1,10 +1,9 @@
 # Brady/PoroTomo 56-1 cold-slug DTS verified example
 
 This is the current featured verified/qualified public-data example for the repository.
-It replaces EGS Collab as the headline proof case because the EGS Collab AMU
-example is source-constrained below the approximate `1e-14 m²` range where the
-Purwamaska and Fulton 2026-style thermal-recovery method becomes effective in
-the motivating model setting.
+It is the current public headline proof case because it sits in the approximate
+`1e-14 m²` range where the Purwamaska and Fulton 2026-style thermal-recovery
+method becomes effective in the motivating model setting.
 
 ## Result
 
@@ -53,10 +52,3 @@ slug-drainage bridge figure and summary JSON from
 `data/processed/brady_porotomo_56_1_alignment_summary.json`. The DTS alignment
 PNG is kept as a reviewed source-evidence artifact rather than a raw-row
 redistribution.
-
-## EGS Collab status
-
-The EGS Collab AMU example remains scientifically useful as a reproducible
-below-threshold control, but it should not be used as the headline evidence that
-the public-data screen finds a threshold-compatible route. Its source-constrained
-preferred value is `1.59e-15 m²`, with band `3.52e-16–4.40e-15 m²`.

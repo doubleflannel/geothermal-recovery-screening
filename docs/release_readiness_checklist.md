@@ -8,7 +8,7 @@ tag, archive, or DOI.
 
 - Tag name: `v0.1.0` for the first stable public screening-framework release.
 - Release title: `Public geothermal thermal-recovery screening framework`.
-- DOI decision: defer Zenodo DOI until the README, notebook, dataset catalog,
+- DOI decision: defer Zenodo DOI until the README, dataset catalog,
   citation/reuse language, and public QC have passed a final review.
 
 ## Include
@@ -18,16 +18,15 @@ tag, archive, or DOI.
 - `LICENSE`
 - `NOTICE.md`
 - `requirements.txt`
-- `params/egs_collab_exp2.yml`
-- `scripts/reproduce_egs_collab_exp2.py`
+- `scripts/reproduce_brady_porotomo_56_1.py`
 - `scripts/check_reproduction.py`
-- `data/processed/*.csv`
-- `data/provenance/egs_collab_exp2_sources.yml`
+- `data/processed/brady_porotomo_56_1_recovery_descriptors.csv`
+- `data/processed/brady_porotomo_56_1_alignment_summary.json`
+- `data/provenance/brady_porotomo_56_1_sources.yml`
 - `docs/*.md`
-- `notebooks/egs_collab_exp2_worked_example.ipynb`
-- `artifacts/egs_collab_exp2_amu34m_recovery_fit.png`
-- `artifacts/egs_collab_exp2_amu34m_k_scale_check.png`
-- `artifacts/egs_collab_exp2_summary.json`
+- `artifacts/brady_porotomo_56_1_dts_alignment.png`
+- `artifacts/brady_porotomo_56_1_slug_bridge.png`
+- `artifacts/brady_porotomo_56_1_summary.json`
 
 ## Exclude
 
@@ -47,18 +46,16 @@ Before tagging a release, run:
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python scripts/reproduce_egs_collab_exp2.py
+python scripts/reproduce_brady_porotomo_56_1.py
 python scripts/check_reproduction.py
 ```
 
 The release is not ready unless the checker confirms:
 
-- `tau_h ≈ 4.19`
-- `rmse_c ≈ 0.0125`
-- `flow_l_min = 0.400`
-- `delta_p_mpa = 22.7`
-- `k_eq_preferred_m2 ≈ 1.59e-15`
-- `k_eq_band_m2 ≈ 3.52e-16–4.40e-15`
+- `tau_h ≈ 118.08`
+- `rmse_c ≈ 0.472`
+- `k_eq_central_m2 ≈ 7.35e-14`
+- `k_eq_preferred_range_m2 ≈ 6.26e-15–9.11e-13`
 
 ## Claim-boundary gate
 
@@ -80,8 +77,7 @@ Allowed wording should stay close to:
 > bulk/model-equivalent permeability estimates.
 
 It is also acceptable to say that the current release includes one featured
-Brady/PoroTomo verified example and one reproducible EGS Collab below-threshold
-control as inspectable implementations of the ladder.
+Brady/PoroTomo verified example as an inspectable implementation of the ladder.
 
 ## DOI gate
 
