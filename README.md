@@ -67,14 +67,15 @@ against independent same-field/fault-scale permeability context.
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+python scripts/reproduce_brady_porotomo_56_1.py
 python scripts/reproduce_egs_collab_exp2.py
 python scripts/check_reproduction.py
 ```
 
-Expected regenerated outputs currently cover the retained EGS Collab
-below-threshold control. The Brady/PoroTomo verified example is included as
-reviewed static artifacts and summary JSON until its public reproduction script
-is added.
+Expected regenerated Brady/PoroTomo outputs cover the public-safe processed
+recovery descriptors, slug-drainage permeability bridge, and summary JSON. The
+DTS alignment image remains a reviewed source-evidence artifact because this
+repository does not redistribute raw DTS, pressure, or flow rows.
 
 Checked Brady/PoroTomo values:
 
@@ -89,9 +90,10 @@ Checked Brady/PoroTomo values:
 - `docs/brady_porotomo_56_1_worked_example.md` describes the featured verified
   case and its claim boundary.
 - `notebooks/egs_collab_exp2_worked_example.ipynb` remains a readable below-threshold-control walkthrough.
-- The current scripts remain the canonical reproduction path for the retained
-  EGS Collab control; a Brady public reproduction script is a future release
-  task.
+- `scripts/reproduce_brady_porotomo_56_1.py` rebuilds the Brady processed
+  descriptor/slug-bridge summary and bridge figure from public-safe snippets.
+- `scripts/reproduce_egs_collab_exp2.py` remains the canonical reproduction
+  path for the retained EGS Collab below-threshold control.
 
 ## Evidence boundary
 
@@ -118,16 +120,17 @@ Candidate and blocked routes are listed in `docs/dataset_catalog.md`; the status
 terms are defined in plain language in `docs/evidence_labels.md`. A blocked or
 source-request route is not counted as a permeability result here. The method
 basis comes from Purwamaska and Fulton 2026-style thermal recovery. The current
-public repo includes one featured verified static example, one reproducible
+public repo includes one featured verified example, one reproducible
 below-threshold control, and a screening catalog; it is not a universal method
 validation.
 
 ## Repository contents
 
-- `data/processed/` — small processed inputs for the retained EGS Collab below-threshold control.
+- `data/processed/` — small processed inputs for Brady/PoroTomo and the retained EGS Collab below-threshold control.
 - `data/provenance/` — source URLs and processing notes for the processed inputs.
 - `params/` — case parameters and expected values.
-- `scripts/reproduce_egs_collab_exp2.py` — rebuilds figures and summary JSON.
+- `scripts/reproduce_brady_porotomo_56_1.py` — rebuilds the Brady slug-bridge figure and summary JSON.
+- `scripts/reproduce_egs_collab_exp2.py` — rebuilds EGS Collab control figures and summary JSON.
 - `scripts/check_reproduction.py` — verifies expected numeric values and outputs.
 - `notebooks/egs_collab_exp2_worked_example.ipynb` — readable walkthrough of the
   worked example.
@@ -145,7 +148,7 @@ validation.
 
 This repository intentionally excludes raw HDF5 files, ZIP exports, NetCDF
 files, private notes, candidate-funnel files, and unpublished source rows. The
-included CSVs are small processed snippets for reproducing the worked example;
+included CSVs are small processed snippets for reproducing the worked examples;
 they are not substitutes for the upstream public datasets or papers.
 
 ## Citation and reuse
@@ -154,9 +157,7 @@ If this repository is useful, cite it as preliminary research software using
 `CITATION.cff`. Code reuse is covered by `LICENSE`.
 
 Text, figures, processed snippets, and upstream-source reuse caveats are
-explained in `NOTICE.md`. The included CSVs are small reproducibility snippets
-for the EGS Collab control, not a new raw-data archive and not a blanket reuse
-license for the original EGS Collab datasets, papers, or reports. Check the
-upstream sources in
-`docs/sources.md` and `data/provenance/egs_collab_exp2_sources.yml` before
-reusing source-derived materials.
+explained in `NOTICE.md`. The included CSVs are small reproducibility snippets,
+not a new raw-data archive and not a blanket reuse license for the original
+datasets, papers, or reports. Check the upstream sources in `docs/sources.md`
+and `data/provenance/` before reusing source-derived materials.

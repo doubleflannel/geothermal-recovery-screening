@@ -51,5 +51,8 @@ node_modules/
 !data/processed/egs_collab_exp2_amu34m_recovery.csv
 !data/processed/egs_collab_exp2_boundary_inputs.csv
 !data/processed/egs_collab_exp2_published_k_ranges.csv
+!data/processed/brady_porotomo_56_1_recovery_descriptors.csv
+!data/processed/brady_porotomo_56_1_alignment_summary.json
 !data/provenance/
 !data/provenance/egs_collab_exp2_sources.yml
+!data/provenance/brady_porotomo_56_1_sources.yml

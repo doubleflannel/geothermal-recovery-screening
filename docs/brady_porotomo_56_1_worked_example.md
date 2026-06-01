@@ -47,6 +47,13 @@ Not claimed:
 - `artifacts/brady_porotomo_56_1_slug_bridge.png`
 - `artifacts/brady_porotomo_56_1_summary.json`
 
+Run `python scripts/reproduce_brady_porotomo_56_1.py` to rebuild the public-safe
+slug-drainage bridge figure and summary JSON from
+`data/processed/brady_porotomo_56_1_recovery_descriptors.csv` and
+`data/processed/brady_porotomo_56_1_alignment_summary.json`. The DTS alignment
+PNG is kept as a reviewed source-evidence artifact rather than a raw-row
+redistribution.
+
 ## EGS Collab status
 
 The EGS Collab AMU example remains scientifically useful as a reproducible

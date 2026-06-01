@@ -1,0 +1,16 @@
+case: brady_porotomo_56_1
+label: Brady/PoroTomo 56-1 cold-slug DTS threshold-compatible example
+source_urls:
+  processed_dts_rows: https://gdr.openei.org/submissions/958
+  pumping_and_pressure_rows: https://gdr.openei.org/submissions/917
+  observation_pressure_rows: https://gdr.openei.org/submissions/1001
+  well_coordinates_and_sensor_metadata: https://gdr.openei.org/submissions/828
+  patterson_2018_thesis: https://gdr.openei.org/files/1077/PattersonMSThesis2018.pdf
+processed_inputs:
+  - data/processed/brady_porotomo_56_1_recovery_descriptors.csv
+  - data/processed/brady_porotomo_56_1_alignment_summary.json
+claim_boundary: >
+  Public-source-derived processed snippets reproduce the recovery descriptor and
+  slug-drainage permeability bridge. Raw DTS, pressure, and flow rows are not
+  redistributed here. The estimate is bulk/model-equivalent and qualified by
+  outflow geometry and head assumptions.

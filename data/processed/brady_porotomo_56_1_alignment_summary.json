@@ -1,0 +1,15 @@
+{
+  "status": "candidate_evidence_plot_built_bridge_not_ready",
+  "dts_start_utc": "2016-03-17 23:25:20+00:00",
+  "dts_end_utc": "2016-03-26 01:03:39+00:00",
+  "dts_hourly_rows": 194,
+  "pumping_hourly_rows": 194,
+  "pressure_hourly_rows": 194,
+  "open_interval_350_372m_temp_first_C": 110.22008928571432,
+  "open_interval_350_372m_temp_last_C": 113.22068452380952,
+  "hot_zone_250_275m_temp_first_C": 132.40782828282823,
+  "hot_zone_250_275m_temp_last_C": 161.16237373737368,
+  "median_extraction_gpm": 8254.75,
+  "median_injection_gpm": 8250.0,
+  "decision": "partial-adjacent-found; make thermal descriptor and bridge-gate next"
+}

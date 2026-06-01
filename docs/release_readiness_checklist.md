@@ -80,8 +80,8 @@ Allowed wording should stay close to:
 > bulk/model-equivalent permeability estimates.
 
 It is also acceptable to say that the current release includes one featured
-Brady/PoroTomo verified static example and one reproducible EGS Collab
-below-threshold control as inspectable implementations of the ladder.
+Brady/PoroTomo verified example and one reproducible EGS Collab below-threshold
+control as inspectable implementations of the ladder.
 
 ## DOI gate
 
