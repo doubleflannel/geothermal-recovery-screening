@@ -19,6 +19,7 @@ DATA = ROOT / "data" / "processed"
 ARTIFACTS = ROOT / "artifacts"
 DESCRIPTOR_PATH = DATA / "brady_porotomo_56_1_recovery_descriptors.csv"
 ALIGNMENT_PATH = DATA / "brady_porotomo_56_1_alignment_summary.json"
+CURVE_PATH = DATA / "brady_porotomo_56_1_recovery_fit_curve.csv"
 
 INK = "#111827"
 MUTED = "#4b5563"
@@ -39,17 +40,26 @@ def read_csv_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def read_descriptors() -> list[dict[str, float | str]]:
+def parse_numeric_rows(path: Path, text_columns: set[str] | None = None) -> list[dict[str, float | str]]:
+    text_columns = text_columns or set()
     rows: list[dict[str, float | str]] = []
-    for row in read_csv_rows(DESCRIPTOR_PATH):
+    for row in read_csv_rows(path):
         parsed: dict[str, float | str] = {}
         for key, value in row.items():
-            if key in {"band", "column", "fit_type"}:
+            if key in text_columns:
                 parsed[key] = value
             else:
                 parsed[key] = float(value)
         rows.append(parsed)
     return rows
+
+
+def read_descriptors() -> list[dict[str, float | str]]:
+    return parse_numeric_rows(DESCRIPTOR_PATH, {"band", "column", "fit_type"})
+
+
+def read_fit_curve() -> list[dict[str, float | str]]:
+    return parse_numeric_rows(CURVE_PATH, {"time_utc"})
 
 
 def open_interval_descriptor(rows: list[dict[str, float | str]]) -> dict[str, float | str]:
@@ -132,9 +142,9 @@ def clean_label(text: object) -> str:
     return str(text).replace("–", "-")
 
 
-def style_axes(ax: plt.Axes) -> None:
+def style_axes(ax: plt.Axes, grid_axis: str = "x") -> None:
     ax.set_facecolor(PAPER)
-    ax.grid(True, axis="x", which="both", color=GRID, alpha=0.9)
+    ax.grid(True, axis=grid_axis, which="both", color=GRID, alpha=0.9)
     for spine in ["top", "right", "left"]:
         ax.spines[spine].set_visible(False)
     ax.tick_params(axis="y", length=0)
@@ -151,64 +161,82 @@ def add_card(fig: plt.Figure, xywh: tuple[float, float, float, float], title: st
     ax.text(0.055, 0.50, wrapped, transform=ax.transAxes, fontsize=9.2, color=MUTED, va="top", linespacing=1.35)
 
 
-def plot_dts_alignment(descriptors: list[dict[str, float | str]], alignment: dict[str, object]) -> None:
+def plot_dts_alignment(
+    descriptors: list[dict[str, float | str]],
+    alignment: dict[str, object],
+    fit_curve: list[dict[str, float | str]],
+) -> None:
     ARTIFACTS.mkdir(exist_ok=True)
     fig, ax = plt.subplots(figsize=(13.2, 8.6))
     fig.patch.set_facecolor(BG)
-    fig.subplots_adjust(left=0.30, right=0.97, top=0.74, bottom=0.36)
-    fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 evidence ladder", fontsize=19, fontweight="bold", color=INK)
+    fig.subplots_adjust(left=0.16, right=0.97, top=0.74, bottom=0.36)
+    fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 temperature recovery", fontsize=19, fontweight="bold", color=INK)
     fig.text(
         0.04,
         0.885,
-        "P/F-core or near-core threshold-compatible route. Temperature recovery is public-source-derived; raw rows are not redistributed here.",
+        "Public-source-derived hourly temperature points and fitted recovery curve for the open interval used in the permeability bridge.",
         fontsize=11,
         color=MUTED,
     )
 
-    bands = [clean_label(row["band"]) for row in descriptors]
-    tau = [float(row["tau_h"]) for row in descriptors]
-    colors = [ORANGE, TEAL, BLUE]
-    y = np.arange(len(bands))[::-1]
-    ax.barh(y, tau, color=colors, alpha=0.88)
-    ax.set_yticks(y)
-    ax.set_yticklabels(bands, fontsize=10)
-    ax.set_xlabel("Fitted recovery descriptor tau (h)", fontsize=11)
-    ax.set_title("Raw-temperature evidence reduced to recovery descriptors", loc="left", fontsize=13, fontweight="bold", pad=12)
-    style_axes(ax)
-    ax.set_xlim(0, max(tau) * 1.18)
-    for yi, value in zip(y, tau):
-        ax.text(value + 2, yi, f"{value:.1f} h", va="center", fontsize=9.5, color=INK)
+    x = np.array([float(row["hours_since_dts_start"]) for row in fit_curve])
+    y = np.array([float(row["open_interval_350_372m_C"]) for row in fit_curve])
+    y_fit = np.array([float(row["open_interval_350_372m_fit_C"]) for row in fit_curve])
+    open_desc = open_interval_descriptor(descriptors)
+    mask = x >= 0
+    x = x[mask]
+    y = y[mask]
+    y_fit = y_fit[mask]
+
+    ax.scatter(x, y, s=28, color=BLUE, alpha=0.78, label="Hourly temperature points")
+    ax.plot(x, y_fit, color=ORANGE, linewidth=3.0, label="Fitted recovery curve")
+    ax.set_xlabel("Hours since DTS recovery-window start", fontsize=11)
+    ax.set_ylabel("Open-interval temperature (°C)", fontsize=11)
+    ax.set_title("Temperature recovery data and fit", loc="left", fontsize=13, fontweight="bold", pad=12)
+    ax.legend(loc="lower right", frameon=True, facecolor="white", edgecolor=GRID)
+    style_axes(ax, "both")
+    ax.set_xlim(0, max(x) * 1.02)
+    ax.set_ylim(min(y.min(), y_fit.min()) - 0.4, max(y.max(), y_fit.max()) + 0.4)
+    ax.text(
+        0.02,
+        0.93,
+        f"tau = {float(open_desc['tau_h']):.2f} h\nRMSE = {float(open_desc['rmse_C']):.3f} °C",
+        transform=ax.transAxes,
+        fontsize=10,
+        color=INK,
+        va="top",
+        bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID},
+    )
 
     add_card(
         fig,
         (0.04, 0.06, 0.28, 0.22),
         "Known",
-        f"DTS window: {alignment['dts_start_utc']} to {alignment['dts_end_utc']}\nOpen interval warms from {float(alignment['open_interval_350_372m_temp_first_C']):.1f} to {float(alignment['open_interval_350_372m_temp_last_C']):.1f} °C.",
+        f"DTS window: {alignment['dts_start_utc']} to {alignment['dts_end_utc']}. Open interval warms from {float(alignment['open_interval_350_372m_temp_first_C']):.1f} to {float(alignment['open_interval_350_372m_temp_last_C']):.1f} °C.",
         BLUE,
     )
     add_card(
         fig,
         (0.36, 0.06, 0.28, 0.22),
-        "P/F descriptor",
-        "Open interval tau = 118.08 h with RMSE = 0.472 °C. This is the thermal-recovery signal carried into the permeability bridge.",
+        "Recovery fit",
+        "The fitted curve gives tau = 118.08 h. This time scale is the temperature-recovery signal carried into the permeability bridge.",
         TEAL,
     )
     add_card(
         fig,
         (0.68, 0.06, 0.28, 0.22),
         "Claim boundary",
-        "This panel proves the recovery descriptor and timing window, not exact outflow geometry or measured rock permeability.",
+        "This panel proves the recovery signal and fit quality, not exact outflow geometry or measured rock permeability.",
         ORANGE,
     )
     fig.savefig(ARTIFACTS / "brady_porotomo_56_1_dts_alignment.png", dpi=180)
     plt.close(fig)
 
-
 def plot_slug_bridge(bridge: dict[str, float]) -> None:
     ARTIFACTS.mkdir(exist_ok=True)
     fig, ax = plt.subplots(figsize=(13.2, 8.6))
     fig.patch.set_facecolor(BG)
-    fig.subplots_adjust(left=0.30, right=0.97, top=0.74, bottom=0.36)
+    fig.subplots_adjust(left=0.18, right=0.97, top=0.74, bottom=0.36)
     fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 P/F permeability bridge", fontsize=19, fontweight="bold", color=INK)
     fig.text(
         0.04,
@@ -225,20 +253,20 @@ def plot_slug_bridge(bridge: dict[str, float]) -> None:
     ]
     y = np.arange(len(rows))[::-1]
     for yi, (label, low, center, high, color) in zip(y, rows):
-        plot_high = min(high, 1.0e-12)
+        plot_high = min(high, 1.0e-11)
         ax.plot([low, plot_high], [yi, yi], color=color, linewidth=9, solid_capstyle="round", alpha=0.88)
         ax.scatter([low, plot_high], [yi, yi], color=color, s=68, zorder=3)
         ax.scatter([center], [yi], marker="*", s=240, color=YELLOW, edgecolor=INK, linewidth=1.0, zorder=4)
         if label != "Patterson context":
             ax.text(low, yi - 0.25, fmt_m2(low), ha="left", va="top", fontsize=9, color=MUTED)
-            high_label = f"extends to {fmt_m2(high)}" if high > 1.0e-12 else fmt_m2(high)
+            high_label = f"extends to {fmt_m2(high)}" if high > 1.0e-11 else fmt_m2(high)
             ax.text(plot_high, yi - 0.25, high_label, ha="right", va="top", fontsize=9, color=MUTED)
         ax.text(center, yi + 0.25, f"central {center:.2e}", ha="center", va="bottom", fontsize=9, color=INK, bbox={"boxstyle": "round,pad=0.20", "facecolor": "white", "edgecolor": GRID})
 
     ax.axvline(THRESHOLD_M2, color=INK, linewidth=2.0, linestyle="--", alpha=0.75)
     ax.text(THRESHOLD_M2 * 1.25, max(y) + 0.42, "~1e-14 m²\nP/F effective range", fontsize=9.5, color=INK, va="top", bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID})
     ax.set_xscale("log")
-    ax.set_xlim(1e-16, 1e-12)
+    ax.set_xlim(1e-16, 1e-11)
     ax.set_yticks(y)
     ax.set_yticklabels([row[0] for row in rows], fontsize=10)
     ax.set_xlabel("Model-equivalent permeability scale (m², log scale)", fontsize=11)
@@ -272,10 +300,11 @@ def plot_slug_bridge(bridge: dict[str, float]) -> None:
 
 def main() -> None:
     descriptors = read_descriptors()
+    fit_curve = read_fit_curve()
     open_interval = open_interval_descriptor(descriptors)
     alignment = json.loads(ALIGNMENT_PATH.read_text())
     _sensitivity_rows, bridge = permeability_sensitivity()
-    plot_dts_alignment(descriptors, alignment)
+    plot_dts_alignment(descriptors, alignment, fit_curve)
     plot_slug_bridge(bridge)
 
     summary = {

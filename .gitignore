@@ -49,6 +49,7 @@ node_modules/
 !data/README.md
 !data/processed/
 !data/processed/brady_porotomo_56_1_recovery_descriptors.csv
+!data/processed/brady_porotomo_56_1_recovery_fit_curve.csv
 !data/processed/brady_porotomo_56_1_alignment_summary.json
 !data/provenance/
 !data/provenance/brady_porotomo_56_1_sources.yml
