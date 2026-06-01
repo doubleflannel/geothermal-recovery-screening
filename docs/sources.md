@@ -2,7 +2,16 @@
 
 This page lists the public sources used by this repository.
 
-## EGS Collab Worked Example
+
+## Brady/PoroTomo Featured Verified Example
+
+- GDR 958 - processed Brady well 56-1 DTS rows: <https://gdr.openei.org/submissions/958>
+- GDR 917 - corrected Brady pumping and pressure rows: <https://gdr.openei.org/submissions/917>
+- GDR 1001 - corrected Brady observation-well pressure rows: <https://gdr.openei.org/submissions/1001>
+- GDR 828 - Brady well coordinates and pressure-sensor-depth metadata: <https://gdr.openei.org/submissions/828>
+- Patterson 2018 thesis PDF - cold-slug and pressure-model context: <https://gdr.openei.org/files/1077/PattersonMSThesis2018.pdf>
+
+## EGS Collab Below-Threshold Control
 
 - GDR 1428 — EGS Collab Exp2 public data source: <https://gdr.openei.org/submissions/1428>
 - GDR 1476 — EGS Collab DTS / event-window source: <https://gdr.openei.org/submissions/1476>

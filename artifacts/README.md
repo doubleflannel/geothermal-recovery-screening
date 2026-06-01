@@ -2,7 +2,7 @@
 
 This folder holds sanitized static artifacts for the public geothermal
 thermal-recovery screening framework. The current included figures are for the
-EGS Collab worked example.
+Brady/PoroTomo featured verified example plus retained EGS Collab below-threshold control.
 
 Current artifacts:
 
@@ -21,3 +21,9 @@ Not allowed here:
 - ZIP/HDF5 files;
 - full interactive research workspace exports;
 - private notes, planning artifacts, or non-public analysis workspaces.
+
+## Brady/PoroTomo featured verified example
+
+- `brady_porotomo_56_1_dts_alignment.png` - cold-slug DTS alignment and recovery-window evidence.
+- `brady_porotomo_56_1_slug_bridge.png` - slug-drainage bridge and permeability comparison.
+- `brady_porotomo_56_1_summary.json` - checked values and claim boundary.

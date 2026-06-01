@@ -79,8 +79,9 @@ Allowed wording should stay close to:
 > geothermal temperature-recovery records can support claim-bounded
 > bulk/model-equivalent permeability estimates.
 
-It is also acceptable to say that the current release includes one reproducible
-EGS Collab worked example as an inspectable implementation of the ladder.
+It is also acceptable to say that the current release includes one featured
+Brady/PoroTomo verified static example and one reproducible EGS Collab
+below-threshold control as inspectable implementations of the ladder.
 
 ## DOI gate
 

@@ -23,11 +23,11 @@ claim is the screening logic: decide which public records can support
 model-equivalent permeability, and label which records remain discovery-only,
 figure-only, source-request-needed, metadata-limited, or support-only.
 
-An included EGS Collab Experiment 2 AMU 34 m case is the current reproducible
-worked example. It rebuilds one thermal-recovery descriptor, one
-pressure/flow/geometry-based permeability scale, and static comparison figures
-from included processed inputs so the evidence ladder can be inspected end to
-end.
+The featured verified example is now Brady/PoroTomo 56-1 cold-slug DTS. It gives
+a qualified threshold-compatible result, with central `7.35e-14 m²` and
+preferred range `6.26e-15–9.11e-13 m²`, compared against independent
+same-field/fault-scale permeability context. EGS Collab remains in the
+repository only as a below-threshold control, not the headline proof case.
 
 ## What this repo is for
 
@@ -46,21 +46,20 @@ For each route, the screening ladder asks whether the public evidence includes:
 4. a bulk/model-equivalent permeability band in `m²`;
 5. a nearby published permeability-scale comparison when validation is claimed.
 
-The EGS Collab worked example gives one checked result within that broader
-screen. It is a scale check, not a direct rock measurement: preferred
-`1.59e-15 m²`, with a source-constrained band of
-`3.52e-16–4.40e-15 m²`.
+The Brady/PoroTomo 56-1 route gives the current checked threshold-compatible
+example within that broader screen. It is a qualified scale comparison, not a
+direct rock measurement or exact outflow-patch validation: central
+`7.35e-14 m²`, preferred range `6.26e-15–9.11e-13 m²`.
 
-## Included worked-example figures
+## Included verified-example figures
 
-The first figure shows the measured EGS Collab temperature recovery and the
-simple fitted recovery descriptor. The second figure shows the resulting
-bulk/model-equivalent `m²` scale check against nearby published EGS Collab
-permeability ranges.
+The first figure shows the Brady/PoroTomo cold-slug DTS alignment and selected
+recovery window. The second figure shows the slug-drainage bridge and comparison
+against independent same-field/fault-scale permeability context.
 
-![EGS Collab Exp2 AMU 34 m recovery fit](artifacts/egs_collab_exp2_amu34m_recovery_fit.png)
+![Brady/PoroTomo 56-1 DTS alignment](artifacts/brady_porotomo_56_1_dts_alignment.png)
 
-![EGS Collab Exp2 AMU 34 m permeability scale check](artifacts/egs_collab_exp2_amu34m_k_scale_check.png)
+![Brady/PoroTomo 56-1 slug bridge](artifacts/brady_porotomo_56_1_slug_bridge.png)
 
 ## Reproduce
 
@@ -72,30 +71,27 @@ python scripts/reproduce_egs_collab_exp2.py
 python scripts/check_reproduction.py
 ```
 
-Expected regenerated outputs:
+Expected regenerated outputs currently cover the retained EGS Collab
+below-threshold control. The Brady/PoroTomo verified example is included as
+reviewed static artifacts and summary JSON until its public reproduction script
+is added.
 
-- `artifacts/egs_collab_exp2_amu34m_recovery_fit.png` — measured recovery curve
-  and exponential descriptor fit.
-- `artifacts/egs_collab_exp2_amu34m_k_scale_check.png` — model-equivalent
-  `m²` band compared with nearby published EGS Collab ranges.
-- `artifacts/egs_collab_exp2_summary.json` — machine-readable fitted values,
-  forcing values, and claim boundary.
+Checked Brady/PoroTomo values:
 
-Expected checked values:
-
-- `tau_h ≈ 4.19`
-- `rmse_c ≈ 0.0125`
-- `flow_l_min = 0.400`
-- `delta_p_mpa = 22.7`
-- `k_eq_preferred_m2 ≈ 1.59e-15`
-- `k_eq_band_m2 ≈ 3.52e-16–4.40e-15`
+- `tau_h ≈ 118.08`
+- `rmse_c ≈ 0.472`
+- `k_eq_central_m2 ≈ 7.35e-14`
+- `k_eq_preferred_range_m2 ≈ 6.26e-15–9.11e-13`
+- independent comparison context mostly `2.24e-14–6.62e-14 m²`
 
 ## Readable demo
 
-- `notebooks/egs_collab_exp2_worked_example.ipynb` walks through the same case
-  as a reviewer-facing notebook.
-- The scripts remain the canonical reproduction path; the notebook is a readable
-  companion for inspecting the calculation.
+- `docs/brady_porotomo_56_1_worked_example.md` describes the featured verified
+  case and its claim boundary.
+- `notebooks/egs_collab_exp2_worked_example.ipynb` remains a readable below-threshold-control walkthrough.
+- The current scripts remain the canonical reproduction path for the retained
+  EGS Collab control; a Brady public reproduction script is a future release
+  task.
 
 ## Evidence boundary
 
@@ -105,9 +101,9 @@ Allowed statements:
 > geothermal temperature-recovery records can support claim-bounded
 > bulk/model-equivalent permeability estimates.
 
-> The EGS Collab Exp2 AMU 34 m worked example gives a public-data
-> bulk/model-equivalent permeability scale check that is numerically consistent
-> with nearby published EGS Collab permeability ranges.
+> The Brady/PoroTomo 56-1 cold-slug DTS example gives a qualified
+> threshold-compatible public-data route with same-field/fault-scale support,
+> while preserving the geometry and comparator-scale caveats.
 
 Not claimed:
 
@@ -122,12 +118,13 @@ Candidate and blocked routes are listed in `docs/dataset_catalog.md`; the status
 terms are defined in plain language in `docs/evidence_labels.md`. A blocked or
 source-request route is not counted as a permeability result here. The method
 basis comes from Purwamaska and Fulton 2026-style thermal recovery. The current
-public repo includes one fully reproducible worked example plus a screening
-catalog; it is not a universal method validation.
+public repo includes one featured verified static example, one reproducible
+below-threshold control, and a screening catalog; it is not a universal method
+validation.
 
 ## Repository contents
 
-- `data/processed/` — small processed inputs for the EGS Collab worked example.
+- `data/processed/` — small processed inputs for the retained EGS Collab below-threshold control.
 - `data/provenance/` — source URLs and processing notes for the processed inputs.
 - `params/` — case parameters and expected values.
 - `scripts/reproduce_egs_collab_exp2.py` — rebuilds figures and summary JSON.
@@ -136,8 +133,9 @@ catalog; it is not a universal method validation.
   worked example.
 - `artifacts/` — regenerated static figures and summary JSON.
 - `docs/method_basis_purwamaska_fulton.md` — plain-language summary of the 2026 method paper behind this repo.
-- `docs/egs_collab_exp2_worked_example.md` — method and interpretation for the
-  worked example.
+- `docs/brady_porotomo_56_1_worked_example.md` — featured verified/qualified
+  threshold-compatible example.
+- `docs/egs_collab_exp2_worked_example.md` — method and interpretation for the retained below-threshold control.
 - `docs/dataset_catalog.md` — compact status catalog for screened routes.
 - `docs/evidence_labels.md` — status labels used for source-backed claims.
 - `docs/release_readiness_checklist.md` — checklist for a future versioned release or DOI decision.
@@ -156,8 +154,9 @@ If this repository is useful, cite it as preliminary research software using
 `CITATION.cff`. Code reuse is covered by `LICENSE`.
 
 Text, figures, processed snippets, and upstream-source reuse caveats are
-explained in `NOTICE.md`. The included CSVs are small reproducibility snippets,
-not a new raw-data archive and not a blanket reuse license for the original EGS
-Collab datasets, papers, or reports. Check the upstream sources in
+explained in `NOTICE.md`. The included CSVs are small reproducibility snippets
+for the EGS Collab control, not a new raw-data archive and not a blanket reuse
+license for the original EGS Collab datasets, papers, or reports. Check the
+upstream sources in
 `docs/sources.md` and `data/provenance/egs_collab_exp2_sources.yml` before
 reusing source-derived materials.

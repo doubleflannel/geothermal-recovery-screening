@@ -27,7 +27,6 @@ route is treated as a permeability result.
 
 | Route | Status | Public-facing result | Boundary |
 | --- | --- | --- | --- |
-| EGS Collab Exp2 AMU 34 m recovery crop | Validated / qualified | Preferred `1.59e-15 m²`; source-constrained band `3.52e-16–4.40e-15 m²`. | Bulk/model-equivalent scale check, not exact-fracture or measured rock permeability. |
 | Brady/PoroTomo 56-1 cold-slug DTS | Validated / qualified | Central `7.35e-14 m²`; broad uncertainty band. | Qualified same-field fault-scale support, not exact outflow-patch validation. |
 | DEMO-FTES Test 1 hot-water circulation | Discovery-only | Central `2.59e-15 m²`; uncertainty band from assumed bridge. | Needs Test 1-specific comparator before validation. |
 | DEMO-FTES Test 1 ambient circulation | Discovery-only | Central `5.79e-15 m²`; uncertainty band from assumed bridge. | Needs phase-specific pressure/drop and comparator tightening. |
@@ -38,6 +37,12 @@ route is treated as a permeability result.
 | LSU PERTT Jan 2020 borehole recovery | Discovery-only | Central `3.93e-14 m²`; preferred `2.15e-14–8.84e-14 m²`. | Exact annulus geometry is applied; independent model-resistance comparator is still missing. |
 | Choutuppal H+ hot/cold-water tests | Discovery-only | Figure-level bridge around `1.4e-11 m²`. | Exact April 2019 CH03/CH12 pressure/head rows are still missing. |
 | OSU GDR 1770 thermohydraulic fracture-flow loop | Discovery-only lab case | H2O small fracture `1.36e-06 m²`; H2O large fracture `3.36e-06 m²`. | Lab fracture-slot result, not field reservoir permeability. |
+
+## Below-threshold controls
+
+| Route | Status | Public-facing result | Boundary |
+| --- | --- | --- | --- |
+| EGS Collab Exp2 AMU 34 m recovery crop | Validated / qualified below-threshold control | Preferred `1.59e-15 m²`; source-constrained band `3.52e-16–4.40e-15 m²`. | Useful non-cherry-picking control, but below the approximate `1e-14 m²` Purwamaska-Fulton effective range and not a headline threshold-compatible proof. |
 
 ## Source-request-needed routes
 

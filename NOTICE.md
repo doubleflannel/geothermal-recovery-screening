@@ -3,7 +3,7 @@
 This repository is a preliminary research-code release. It contains code,
 small processed public-source-derived inputs, static figures, and documentation
 for a public-data geothermal thermal-recovery screening framework. The current
-release includes one reproducible EGS Collab worked example plus a public
+release includes one featured Brady/PoroTomo verified example, one reproducible EGS Collab below-threshold control, plus a public
 dataset-route catalog.
 
 ## Code
@@ -34,6 +34,6 @@ public-dataset exports.
 
 The repository reports claim-bounded bulk/model-equivalent permeability
 screening results in `m²` only when the evidence ladder supports them. The
-included EGS Collab example is one scale check; it is not measured rock
+included Brady/PoroTomo example is one qualified same-field/fault-scale check; it is not measured rock
 permeability, exact-fracture permeability, field validation, or a FORGE
 permeability estimate.

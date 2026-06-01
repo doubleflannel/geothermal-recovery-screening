@@ -45,8 +45,9 @@ This repository borrows the evidence structure, not the exact full model:
 6. label unresolved or assumption-heavy routes honestly.
 
 The screening catalog applies this structure across a small public-dataset
-demonstration set. The included EGS Collab example is one reproducible
-implementation of the style of reasoning, not a reproduction of every
+demonstration set. The included Brady/PoroTomo example is the current verified/qualified
+threshold-compatible route. The EGS Collab example is retained as a reproducible
+below-threshold control and implementation of the style of reasoning, not a reproduction of every
 Purwamaska and Fulton 2026 model simulation.
 
 ## What this repo does not claim

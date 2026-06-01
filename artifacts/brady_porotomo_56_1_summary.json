@@ -1,0 +1,23 @@
+{
+  "case": "Brady/PoroTomo 56-1 cold-slug DTS",
+  "status": "Validated / qualified",
+  "claim": "Threshold-compatible Purwamaska and Fulton 2026-style thermal-recovery route with same-field/fault-scale support, not exact outflow-patch validation.",
+  "tau_h": 118.08,
+  "rmse_c": 0.472,
+  "k_eq_central_m2": 7.35e-14,
+  "k_eq_preferred_range_m2": [
+    6.26e-15,
+    9.11e-13
+  ],
+  "k_eq_full_sensitivity_m2": [
+    3.61e-16,
+    2.73e-11
+  ],
+  "published_context_m2": [
+    2.24e-14,
+    6.62e-14
+  ],
+  "threshold_note": "Central estimate exceeds the approximate 1e-14 m2 Purwamaska-Fulton effectiveness range; preferred uncertainty crosses below and above threshold.",
+  "dominant_uncertainty": "Effective outflow geometry, especially L/A, plus excess head/pressure-drop path.",
+  "verification": "Senior QC passed with warning in TASK-157.19 using scripts, reviewer notebook, execution transcript, and small-oracle T11/T12 review."
+}
