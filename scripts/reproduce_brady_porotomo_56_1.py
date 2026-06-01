@@ -138,6 +138,16 @@ def fmt_m2(value: float) -> str:
     return f"{value:.2e} m²"
 
 
+def fmt_power_m2(value: float) -> str:
+    exponent = int(math.floor(math.log10(abs(value))))
+    coefficient = value / 10**exponent
+    if 1.0 <= coefficient < 9.995:
+        return rf"${coefficient:.2f}\times10^{{{exponent}}}$ m²"
+    exponent += 1
+    coefficient = value / 10**exponent
+    return rf"${coefficient:.2f}\times10^{{{exponent}}}$ m²"
+
+
 def clean_label(text: object) -> str:
     return str(text).replace("–", "-")
 
@@ -169,12 +179,12 @@ def plot_dts_alignment(
     ARTIFACTS.mkdir(exist_ok=True)
     fig, ax = plt.subplots(figsize=(13.2, 8.6))
     fig.patch.set_facecolor(BG)
-    fig.subplots_adjust(left=0.16, right=0.97, top=0.74, bottom=0.36)
+    fig.subplots_adjust(left=0.13, right=0.97, top=0.80, bottom=0.13)
     fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 temperature recovery", fontsize=19, fontweight="bold", color=INK)
     fig.text(
         0.04,
         0.885,
-        "Public-source-derived hourly temperature points and fitted recovery curve for the open interval used in the permeability bridge.",
+        "Public-source-derived hourly temperature points and fitted recovery curve for the 350-372 m open interval used in Ivan's bridge analysis.",
         fontsize=11,
         color=MUTED,
     )
@@ -207,28 +217,6 @@ def plot_dts_alignment(
         va="top",
         bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID},
     )
-
-    add_card(
-        fig,
-        (0.04, 0.06, 0.28, 0.22),
-        "Known",
-        f"DTS window: {alignment['dts_start_utc']} to {alignment['dts_end_utc']}. Open interval warms from {float(alignment['open_interval_350_372m_temp_first_C']):.1f} to {float(alignment['open_interval_350_372m_temp_last_C']):.1f} °C.",
-        BLUE,
-    )
-    add_card(
-        fig,
-        (0.36, 0.06, 0.28, 0.22),
-        "Recovery fit",
-        "The fitted curve gives tau = 118.08 h. This time scale is the temperature-recovery signal carried into the permeability bridge.",
-        TEAL,
-    )
-    add_card(
-        fig,
-        (0.68, 0.06, 0.28, 0.22),
-        "Claim boundary",
-        "This panel proves the recovery signal and fit quality, not exact outflow geometry or measured rock permeability.",
-        ORANGE,
-    )
     fig.savefig(ARTIFACTS / "brady_porotomo_56_1_dts_alignment.png", dpi=180)
     plt.close(fig)
 
@@ -236,64 +224,62 @@ def plot_slug_bridge(bridge: dict[str, float]) -> None:
     ARTIFACTS.mkdir(exist_ok=True)
     fig, ax = plt.subplots(figsize=(13.2, 8.6))
     fig.patch.set_facecolor(BG)
-    fig.subplots_adjust(left=0.18, right=0.97, top=0.74, bottom=0.36)
+    fig.subplots_adjust(left=0.19, right=0.97, top=0.76, bottom=0.17)
     fig.text(0.04, 0.93, "Brady/PoroTomo 56-1 thermal-recovery permeability bridge", fontsize=19, fontweight="bold", color=INK)
     fig.text(
         0.04,
         0.885,
-        "Blue = threshold-compatible thermal-recovery route. Dashed line = approximate 1e-14 m² method-effectiveness range from the 2026 motivating model setting.",
+        "Blue/gray = Ivan analysis from Brady temperature recovery. Teal = independent published pressure-model context from Patterson (2018).",
         fontsize=11,
         color=MUTED,
     )
 
     rows = [
-        ("Brady preferred range", bridge["preferred_min_m2"], bridge["central_m2"], bridge["preferred_max_m2"], BLUE),
-        ("Full sensitivity", bridge["full_min_m2"], bridge["full_median_m2"], bridge["full_max_m2"], GRAY),
-        ("Patterson context", 2.24e-14, 4.43e-14, 6.62e-14, TEAL),
+        ("Ivan: Brady bridge", bridge["preferred_min_m2"], bridge["central_m2"], bridge["preferred_max_m2"], BLUE),
+        ("Ivan: full sensitivity", bridge["full_min_m2"], bridge["full_median_m2"], bridge["full_max_m2"], GRAY),
+        ("Patterson (2018) reference", 2.24e-14, 4.43e-14, 6.62e-14, TEAL),
     ]
     y = np.arange(len(rows))[::-1]
     for yi, (label, low, center, high, color) in zip(y, rows):
-        plot_high = min(high, 1.0e-11)
+        plot_high = min(high, 1.0e-10)
         ax.plot([low, plot_high], [yi, yi], color=color, linewidth=9, solid_capstyle="round", alpha=0.88)
         ax.scatter([low, plot_high], [yi, yi], color=color, s=68, zorder=3)
         ax.scatter([center], [yi], marker="*", s=240, color=YELLOW, edgecolor=INK, linewidth=1.0, zorder=4)
-        if label != "Patterson context":
-            ax.text(low, yi - 0.25, fmt_m2(low), ha="left", va="top", fontsize=9, color=MUTED)
-            high_label = f"extends to {fmt_m2(high)}" if high > 1.0e-11 else fmt_m2(high)
-            ax.text(plot_high, yi - 0.25, high_label, ha="right", va="top", fontsize=9, color=MUTED)
-        ax.text(center, yi + 0.25, f"central {center:.2e}", ha="center", va="bottom", fontsize=9, color=INK, bbox={"boxstyle": "round,pad=0.20", "facecolor": "white", "edgecolor": GRID})
+        value_y_offset = 0.25 if yi == 0 else -0.25
+        value_va = "bottom" if yi == 0 else "top"
+        ax.text(low, yi + value_y_offset, fmt_power_m2(low), ha="left", va=value_va, fontsize=9, color=MUTED)
+        high_label = f"extends to {fmt_power_m2(high)}" if high > 1.0e-10 else fmt_power_m2(high)
+        ax.text(plot_high, yi + value_y_offset, high_label, ha="right", va=value_va, fontsize=9, color=MUTED)
+        ax.text(
+            center,
+            yi + 0.25,
+            f"central {fmt_power_m2(center)}",
+            ha="center",
+            va="bottom",
+            fontsize=9,
+            color=INK,
+            bbox={"boxstyle": "round,pad=0.20", "facecolor": "white", "edgecolor": GRID},
+        )
 
     ax.axvline(THRESHOLD_M2, color=INK, linewidth=2.0, linestyle="--", alpha=0.75)
-    ax.text(THRESHOLD_M2 * 1.25, max(y) + 0.42, "~1e-14 m²\nmethod effective range", fontsize=9.5, color=INK, va="top", bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID})
+    ax.text(
+        THRESHOLD_M2,
+        max(y) + 0.48,
+        "$10^{-14}$ m²\nmethod-effective range",
+        fontsize=9.5,
+        color=INK,
+        ha="center",
+        va="top",
+        bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": GRID},
+    )
     ax.set_xscale("log")
-    ax.set_xlim(1e-16, 1e-11)
+    ax.set_xlim(1e-16, 1e-10)
+    ax.set_ylim(-0.45, max(y) + 0.55)
     ax.set_yticks(y)
     ax.set_yticklabels([row[0] for row in rows], fontsize=10)
     ax.set_xlabel("Model-equivalent permeability scale (m², log scale)", fontsize=11)
-    ax.set_title("Claim-bounded m² range", loc="left", fontsize=13, fontweight="bold", pad=12)
+    ax.set_title("Analysis ranges versus published reference", loc="left", fontsize=13, fontweight="bold", pad=12)
     style_axes(ax)
-
-    add_card(
-        fig,
-        (0.04, 0.06, 0.28, 0.22),
-        "Result",
-        "Central k_eq = 7.35e-14 m². Preferred range = 6.26e-15 to 9.11e-13 m².",
-        BLUE,
-    )
-    add_card(
-        fig,
-        (0.36, 0.06, 0.28, 0.22),
-        "Comparison tier",
-        "Independent context is same-field/fault-scale same-order support, mostly 2.24e-14 to 6.62e-14 m².",
-        TEAL,
-    )
-    add_card(
-        fig,
-        (0.68, 0.06, 0.28, 0.22),
-        "Caveat",
-        "Dominant uncertainty is effective outflow geometry, especially L/A; excess head is secondary.",
-        ORANGE,
-    )
     fig.savefig(ARTIFACTS / "brady_porotomo_56_1_slug_bridge.png", dpi=180)
     fig.savefig(ARTIFACTS / "brady_porotomo_56_1_thermal_recovery_bridge.png", dpi=180)
     plt.close(fig)

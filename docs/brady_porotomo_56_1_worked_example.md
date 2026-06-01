@@ -2,17 +2,17 @@
 
 This is the current featured verified/qualified public-data example for the repository.
 It is the current public headline proof case because it sits in the approximate
-`1e-14 m²` range where the Purwamaska and Fulton 2026-style thermal-recovery
+`10^-14 m²` range where the Purwamaska and Fulton 2026-style thermal-recovery
 method becomes effective in the motivating model setting.
 
 ## Result
 
 - Status: `Validated / qualified`.
-- Central model-equivalent permeability: `7.35e-14 m²`.
-- Preferred geometry/head envelope: `6.26e-15–9.11e-13 m²`.
-- Full sensitivity envelope: `3.61e-16–2.73e-11 m²`.
-- Independent comparison context: Patterson pressure-model values are mostly
-  `2.24e-14–6.62e-14 m²`.
+- Central model-equivalent permeability: `7.35 × 10^-14 m²`.
+- Preferred geometry/head envelope: `6.26 × 10^-15` to `9.11 × 10^-13 m²`.
+- Full sensitivity envelope: `3.61 × 10^-16` to `2.73 × 10^-11 m²`.
+- Independent comparison context: Patterson (2018) pressure-model values are
+  mostly `2.24 × 10^-14` to `6.62 × 10^-14 m²`.
 
 ## Why it counts
 

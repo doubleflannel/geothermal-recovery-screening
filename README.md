@@ -15,8 +15,9 @@ links to the 2026 article and supporting model archive.
 
 The active public packet now centers on one threshold-compatible example:
 Brady/PoroTomo 56-1 cold-slug DTS. It gives a qualified result, with central
-`7.35e-14 m²` and preferred range `6.26e-15–9.11e-13 m²`, compared against
-independent same-field/fault-scale permeability context.
+`7.35 × 10^-14 m²` and preferred range `6.26 × 10^-15` to
+`9.11 × 10^-13 m²`, compared against independent same-field/fault-scale
+permeability context from Patterson (2018).
 
 ## What this repo is for
 
@@ -40,12 +41,12 @@ measurement or exact outflow-patch validation.
 ## Included verified-example figures
 
 The first figure shows the Brady/PoroTomo cold-slug DTS alignment and selected
-recovery window. The second figure shows the slug-drainage bridge and comparison
-against independent same-field/fault-scale permeability context.
+recovery window. The second figure separates Ivan's bridge analysis from the
+independent published Patterson (2018) pressure-model reference.
 
-![Brady/PoroTomo 56-1 DTS alignment](artifacts/brady_porotomo_56_1_dts_alignment.png?v=20260601-a292713)
+![Brady/PoroTomo 56-1 DTS alignment](artifacts/brady_porotomo_56_1_dts_alignment.png?v=20260601-cleanfig)
 
-![Brady/PoroTomo 56-1 slug bridge](artifacts/brady_porotomo_56_1_thermal_recovery_bridge.png)
+![Brady/PoroTomo 56-1 slug bridge](artifacts/brady_porotomo_56_1_thermal_recovery_bridge.png?v=20260601-cleanfig)
 
 ## Reproduce
 
@@ -66,9 +67,9 @@ Checked Brady/PoroTomo values:
 
 - `tau_h ≈ 118.08`
 - `rmse_c ≈ 0.472`
-- `k_eq_central_m2 ≈ 7.35e-14`
-- `k_eq_preferred_range_m2 ≈ 6.26e-15–9.11e-13`
-- independent comparison context mostly `2.24e-14–6.62e-14 m²`
+- `k_eq_central_m2 = 7.35 × 10^-14`
+- `k_eq_preferred_range_m2 = 6.26 × 10^-15` to `9.11 × 10^-13`
+- independent comparison context mostly `2.24 × 10^-14` to `6.62 × 10^-14 m²`
 
 ## Readable demo
 
